@@ -1,12 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import MediaPlaceholder from "@/components/MediaPlaceholder";
+import Navigation from "@/components/Navigation";
 import { Clock, MapPin, Music, Heart } from "lucide-react";
 import worshipImage from "@/assets/worship-hands.jpg";
 
 const Worship = () => {
   return (
     <div className="min-h-screen bg-section-gradient">
+      <Navigation />
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto text-center">
@@ -25,22 +27,22 @@ const Worship = () => {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-primary text-center mb-12">Service Times</h2>
           
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             <Card className="shadow-soft hover:shadow-medium transition-all duration-300">
               <CardHeader className="text-center">
-                <CardTitle className="text-2xl text-accent">Sunday Morning</CardTitle>
+                <CardTitle className="text-2xl text-accent">Sunday Service</CardTitle>
               </CardHeader>
               <CardContent className="text-center space-y-4">
                 <div className="flex items-center justify-center gap-2 text-muted-foreground">
                   <Clock className="h-5 w-5" />
-                  <span>9:00 AM & 11:00 AM</span>
+                  <span>11:00 AM onwards</span>
                 </div>
                 <div className="flex items-center justify-center gap-2 text-muted-foreground">
                   <MapPin className="h-5 w-5" />
                   <span>Main Sanctuary</span>
                 </div>
                 <p className="text-muted-foreground">
-                  Traditional worship service with choir, hymns, and inspiring messages
+                  Join us for worship, prayer, and inspiring messages every Sunday
                 </p>
                 <Button className="mt-4">Plan Your Visit</Button>
               </CardContent>
@@ -48,21 +50,63 @@ const Worship = () => {
 
             <Card className="shadow-soft hover:shadow-medium transition-all duration-300">
               <CardHeader className="text-center">
-                <CardTitle className="text-2xl text-accent">Sunday Evening</CardTitle>
+                <CardTitle className="text-2xl text-accent">Kids Church</CardTitle>
               </CardHeader>
               <CardContent className="text-center space-y-4">
                 <div className="flex items-center justify-center gap-2 text-muted-foreground">
                   <Clock className="h-5 w-5" />
-                  <span>6:00 PM</span>
+                  <span>10:30 AM Sunday</span>
                 </div>
                 <div className="flex items-center justify-center gap-2 text-muted-foreground">
                   <MapPin className="h-5 w-5" />
-                  <span>Fellowship Hall</span>
+                  <span>Children's Hall</span>
                 </div>
                 <p className="text-muted-foreground">
-                  Contemporary worship with modern music and interactive fellowship
+                  Fun and engaging worship experience designed for children
                 </p>
-                <Button className="mt-4">Join Us Tonight</Button>
+                <Button className="mt-4">Bring Your Kids</Button>
+              </CardContent>
+            </Card>
+
+            <Card className="shadow-soft hover:shadow-medium transition-all duration-300">
+              <CardHeader className="text-center">
+                <CardTitle className="text-2xl text-accent">Online Meetings</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center space-y-4">
+                <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                  <Clock className="h-5 w-5" />
+                  <span>Tuesday 9:30 PM</span>
+                </div>
+                <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                  <MapPin className="h-5 w-5" />
+                  <span>Zoom Online</span>
+                </div>
+                <p className="text-muted-foreground">
+                  Join our weekly online prayer and fellowship meeting
+                </p>
+                <Button className="mt-4">Join Online</Button>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="grid md:grid-cols-1 gap-8 mb-16 max-w-md mx-auto">
+            <Card className="shadow-soft hover:shadow-medium transition-all duration-300">
+              <CardHeader className="text-center">
+                <CardTitle className="text-2xl text-accent">Ladies Meeting</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center space-y-4">
+                <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                  <Clock className="h-5 w-5" />
+                  <span>Friday 9:30 PM</span>
+                </div>
+                <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                  <MapPin className="h-5 w-5" />
+                  <span>Online/Church</span>
+                </div>
+                <p className="text-muted-foreground">
+                  Special fellowship and prayer time for ladies of the church
+                </p>
+                <Button className="mt-4">Join the Ladies</Button>
               </CardContent>
             </Card>
           </div>

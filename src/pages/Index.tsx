@@ -11,7 +11,7 @@ const Index = () => {
     {
       icon: Calendar,
       title: "Sunday Service",
-      description: "Join us for worship every Sunday at 9 AM & 11 AM",
+      description: "Join us for worship every Sunday at 11:00 AM onwards",
       link: "/worship",
       color: "text-accent"
     },
@@ -47,7 +47,7 @@ const Index = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-section-gradient">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-12">
-            Welcome to Grace Community
+            Welcome to Cornerstone House Of Worship
           </h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
@@ -79,7 +79,7 @@ const Index = () => {
               </h3>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 Whether you're new to faith or have been walking with Jesus for years, 
-                Grace Community Church is a place where you can grow, serve, and find 
+                Cornerstone House Of Worship is a place where you can grow, serve, and find 
                 meaningful relationships. We believe that everyone has a place in God's 
                 family, and we'd love to help you discover yours.
               </p>

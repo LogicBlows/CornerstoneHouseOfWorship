@@ -1,10 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import MediaPlaceholder from "@/components/MediaPlaceholder";
+import Navigation from "@/components/Navigation";
 import communityImage from "@/assets/community-fellowship.jpg";
 
 const About = () => {
   return (
     <div className="min-h-screen bg-section-gradient">
+      <Navigation />
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto text-center">
@@ -12,7 +14,7 @@ const About = () => {
             About Our Church
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Grace Community Church has been serving our community for over 30 years, 
+            Cornerstone House Of Worship has been serving our community for over 30 years, 
             spreading love, hope, and the Gospel of Jesus Christ.
           </p>
         </div>
@@ -26,7 +28,7 @@ const About = () => {
               <h2 className="text-3xl font-bold text-primary mb-6">Our Story</h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Founded in 1990, Grace Community Church began as a small group of believers 
+                  Founded in 1990, Cornerstone House Of Worship began as a small group of believers 
                   meeting in a local community center. Today, we are a thriving congregation 
                   of over 500 families united in our love for Christ and commitment to serving others.
                 </p>

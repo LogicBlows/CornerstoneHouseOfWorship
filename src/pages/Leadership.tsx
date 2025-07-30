@@ -1,41 +1,43 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import MediaPlaceholder from "@/components/MediaPlaceholder";
+import Navigation from "@/components/Navigation";
 import { Mail, Phone } from "lucide-react";
 
 const Leadership = () => {
   const leaders = [
     {
-      name: "Pastor John Smith",
+      name: "Ps. Nirmal Kumar",
       title: "Senior Pastor",
-      description: "Pastor John has been serving our congregation for over 15 years, bringing wisdom, compassion, and biblical insight to our community.",
-      email: "pastor.john@gracechurch.com",
+      description: "Ps. Nirmal has been serving our congregation for over 15 years, bringing wisdom, compassion, and biblical insight to our community.",
+      email: "pastor@cornerstonehow.com",
       phone: "(555) 123-4567"
     },
     {
-      name: "Apostle Mary Johnson",
-      title: "Apostle & Church Planter",
-      description: "Apostle Mary leads our missions and church planting efforts, having established 5 churches across the region.",
-      email: "apostle.mary@gracechurch.com",
+      name: "Ps. Mamta Kumar", 
+      title: "Co-Pastor",
+      description: "Ps. Mamta serves alongside her husband in ministry, bringing a heart for prayer, worship, and caring for the congregation.",
+      email: "mamta@cornerstonehow.com",
+      phone: "(555) 123-4567"
+    },
+    {
+      name: "Ps. Vidya Grace",
+      title: "Associate Pastor",
+      description: "Ps. Vidya provides pastoral care and teaches with great passion, helping believers grow deeper in their walk with Christ.",
+      email: "vidya@cornerstonehow.com",
       phone: "(555) 234-5678"
     },
     {
-      name: "Elder David Wilson",
-      title: "Board Chairman",
-      description: "Elder David provides spiritual guidance and leadership to our church board, ensuring we stay true to our mission.",
-      email: "elder.david@gracechurch.com",
+      name: "Ashish Spencer",
+      title: "Youth Leader",
+      description: "Ashish leads our youth ministry, helping young people grow in their faith and develop into strong leaders for the next generation.",
+      email: "youth@cornerstonehow.com",
       phone: "(555) 345-6789"
-    },
-    {
-      name: "Minister Sarah Brown",
-      title: "Youth Pastor",
-      description: "Minister Sarah leads our youth ministry, helping young people grow in their faith and develop into strong leaders.",
-      email: "youth@gracechurch.com",
-      phone: "(555) 456-7890"
     }
   ];
 
   return (
     <div className="min-h-screen bg-section-gradient">
+      <Navigation />
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto text-center">

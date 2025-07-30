@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import MediaPlaceholder from "@/components/MediaPlaceholder";
+import Navigation from "@/components/Navigation";
 import { Calendar, Globe, Users, Flame } from "lucide-react";
 
 const Apostle = () => {
@@ -31,6 +32,7 @@ const Apostle = () => {
 
   return (
     <div className="min-h-screen bg-section-gradient">
+      <Navigation />
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto text-center">
@@ -39,7 +41,7 @@ const Apostle = () => {
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Receive apostolic wisdom, prophetic insight, and kingdom strategy from 
-            Apostle Mary Johnson's ministry to the nations.
+            Apostle Vaibhav Kapoor's ministry to the nations.
           </p>
         </div>
       </section>
@@ -49,7 +51,7 @@ const Apostle = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
-              <h2 className="text-3xl font-bold text-primary mb-6">A Word from Apostle Mary</h2>
+              <h2 className="text-3xl font-bold text-primary mb-6">A Word from Apostle Vaibhav</h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
                   Beloved church family, I greet you in the mighty name of Jesus Christ! 
@@ -72,10 +74,10 @@ const Apostle = () => {
             </div>
             <div className="space-y-6">
               <div className="w-48 h-48 bg-muted rounded-full flex items-center justify-center mx-auto">
-                <span className="text-4xl font-bold text-muted-foreground">AM</span>
+                <span className="text-4xl font-bold text-muted-foreground">VK</span>
               </div>
               <div className="text-center">
-                <h3 className="text-xl font-semibold text-primary">Apostle Mary Johnson</h3>
+                <h3 className="text-xl font-semibold text-primary">Apostle Vaibhav Kapoor</h3>
                 <p className="text-muted-foreground">Apostle & Church Planter</p>
                 <p className="text-sm text-muted-foreground mt-2">
                   15+ years in apostolic ministry

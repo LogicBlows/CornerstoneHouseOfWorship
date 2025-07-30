@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import MediaPlaceholder from "@/components/MediaPlaceholder";
+import Navigation from "@/components/Navigation";
 import { Calendar, Play, Book, Heart } from "lucide-react";
 
 const Pastor = () => {
@@ -24,6 +25,7 @@ const Pastor = () => {
 
   return (
     <div className="min-h-screen bg-section-gradient">
+      <Navigation />
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto text-center">
@@ -32,7 +34,7 @@ const Pastor = () => {
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Receive encouragement, biblical wisdom, and spiritual guidance from 
-            Pastor John Smith's heart to yours.
+            Ps. Nirmal Kumar's heart to yours.
           </p>
         </div>
       </section>
@@ -42,7 +44,7 @@ const Pastor = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
-              <h2 className="text-3xl font-bold text-primary mb-6">A Message from Pastor John</h2>
+              <h2 className="text-3xl font-bold text-primary mb-6">A Message from Ps. Nirmal</h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
                   Dear beloved congregation and visitors, it is my joy and privilege to 
@@ -64,13 +66,13 @@ const Pastor = () => {
             </div>
             <div className="space-y-6">
               <div className="w-48 h-48 bg-muted rounded-full flex items-center justify-center mx-auto">
-                <span className="text-4xl font-bold text-muted-foreground">PS</span>
+                <span className="text-4xl font-bold text-muted-foreground">NK</span>
               </div>
               <div className="text-center">
-                <h3 className="text-xl font-semibold text-primary">Pastor John Smith</h3>
+                <h3 className="text-xl font-semibold text-primary">Ps. Nirmal Kumar</h3>
                 <p className="text-muted-foreground">Senior Pastor</p>
                 <p className="text-sm text-muted-foreground mt-2">
-                  15+ years serving Grace Community Church
+                  15+ years serving Cornerstone House Of Worship
                 </p>
               </div>
             </div>
@@ -134,10 +136,10 @@ const Pastor = () => {
           <div className="space-y-8">
             <h2 className="text-3xl font-bold text-primary text-center mb-8">Message Media</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <MediaPlaceholder
+                <MediaPlaceholder
                 type="video"
                 title="Latest Sunday Message"
-                description="This week's inspiring message from Pastor John"
+                description="This week's inspiring message from Ps. Nirmal"
               />
               <MediaPlaceholder
                 type="video"
