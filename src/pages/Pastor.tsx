@@ -72,7 +72,7 @@ const Pastor = () => {
                 <h3 className="text-xl font-semibold text-primary">Ps. Nirmal Kumar</h3>
                 <p className="text-muted-foreground">Senior Pastor</p>
                 <p className="text-sm text-muted-foreground mt-2">
-                  15+ years serving Cornerstone House Of Worship
+                  Serving Cornerstone House Of Worship
                 </p>
               </div>
             </div>

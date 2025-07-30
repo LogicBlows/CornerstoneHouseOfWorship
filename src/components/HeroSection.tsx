@@ -9,7 +9,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 z-0">
         <img
           src={heroImage}
-          alt="Grace Community Church"
+          alt="Cornerstone House of Worship"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-primary/40 backdrop-blur-[1px]" />

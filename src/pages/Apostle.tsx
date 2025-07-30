@@ -80,7 +80,7 @@ const Apostle = () => {
                 <h3 className="text-xl font-semibold text-primary">Apostle Vaibhav Kapoor</h3>
                 <p className="text-muted-foreground">Apostle & Church Planter</p>
                 <p className="text-sm text-muted-foreground mt-2">
-                  15+ years in apostolic ministry
+                  Serving in apostolic ministry
                 </p>
               </div>
             </div>

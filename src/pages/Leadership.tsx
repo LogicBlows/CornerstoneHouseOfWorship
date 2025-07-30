@@ -8,7 +8,7 @@ const Leadership = () => {
     {
       name: "Ps. Nirmal Kumar",
       title: "Senior Pastor",
-      description: "Ps. Nirmal has been serving our congregation for over 15 years, bringing wisdom, compassion, and biblical insight to our community.",
+      description: "Ps. Nirmal has been serving our congregation, bringing wisdom, compassion, and biblical insight to our community.",
       email: "pastor@cornerstonehow.com",
       phone: "(555) 123-4567"
     },
@@ -28,10 +28,17 @@ const Leadership = () => {
     },
     {
       name: "Ashish Spencer",
-      title: "Youth Leader",
-      description: "Ashish leads our youth ministry, helping young people grow in their faith and develop into strong leaders for the next generation.",
-      email: "youth@cornerstonehow.com",
+      title: "Senior Worship Leader",
+      description: "Ashish leads our worship ministry, inspiring the congregation through music and helping develop the next generation of worship leaders.",
+      email: "worship@cornerstonehow.com",
       phone: "(555) 345-6789"
+    },
+    {
+      name: "Victor Matthew",
+      title: "Worship Leader",
+      description: "Victor serves in our worship ministry, bringing passion and skill to enhance our worship experience and glorify God.",
+      email: "worship@cornerstonehow.com",
+      phone: "(555) 456-7890"
     }
   ];
 

@@ -11,7 +11,7 @@ const Ministry = () => {
       name: "Youth Ministry",
       description: "Empowering the next generation through Bible study, fellowship, and service projects.",
       age: "Ages 13-18",
-      time: "Fridays 7:00 PM"
+      time: "Saturdays 1:00 PM - 4:00 PM"
     },
     {
       icon: Baby,
@@ -88,7 +88,11 @@ const Ministry = () => {
                       <p className="text-accent font-semibold">{ministry.age}</p>
                       <p className="text-muted-foreground">{ministry.time}</p>
                     </div>
-                    <Button variant="outline" className="mt-4">
+                    <Button 
+                      variant="outline" 
+                      className="mt-4"
+                      onClick={() => window.location.href = `/ministry/${ministry.name.toLowerCase().replace(/ /g, '-').replace("'s", "s")}`}
+                    >
                       Learn More
                     </Button>
                   </CardContent>

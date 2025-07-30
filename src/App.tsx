@@ -10,6 +10,7 @@ import Leadership from "./pages/Leadership";
 import Ministry from "./pages/Ministry";
 import Pastor from "./pages/Pastor";
 import Apostle from "./pages/Apostle";
+import MinistryDetails from "./pages/MinistryDetails";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/worship" element={<Worship />} />
           <Route path="/leadership" element={<Leadership />} />
           <Route path="/ministry" element={<Ministry />} />
+          <Route path="/ministry/:ministry" element={<MinistryDetails />} />
           <Route path="/pastor" element={<Pastor />} />
           <Route path="/apostle" element={<Apostle />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
