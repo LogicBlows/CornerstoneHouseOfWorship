@@ -34,7 +34,7 @@ const MinistryDetails = () => {
       ],
       content: "Our worship team is passionate about creating an atmosphere where God's presence can be felt. Each member brings their unique gifts and talents to serve the congregation and lead them into meaningful worship. We believe that worship is not just about music, but about creating a heart connection with God."
     },
-    children: {
+    "childrens-ministry": {
       title: "Children's Ministry",
       icon: Users,
       description: "Fun, age-appropriate learning experiences that help children discover God's love.",
@@ -46,7 +46,7 @@ const MinistryDetails = () => {
       ],
       content: "Our children's ministry is dedicated to nurturing young hearts and minds in the love of Christ. Our experienced leaders create engaging, age-appropriate lessons that help children understand God's love and develop a strong foundation of faith. We believe every child is precious to God and deserves excellent care and biblical teaching."
     },
-    youth: {
+    "youth-ministry": {
       title: "Youth Ministry", 
       icon: Heart,
       description: "Empowering the next generation through Bible study, fellowship, and service projects.",

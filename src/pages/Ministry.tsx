@@ -11,7 +11,7 @@ const Ministry = () => {
       name: "Youth Ministry",
       description: "Empowering the next generation through Bible study, fellowship, and service projects.",
       age: "Ages 13-18",
-      time: "Saturdays 1:00 PM - 4:00 PM"
+      time: "Saturday 1:00 PM to 4:00 PM"
     },
     {
       icon: Baby,
@@ -91,7 +91,10 @@ const Ministry = () => {
                     <Button 
                       variant="outline" 
                       className="mt-4"
-                      onClick={() => window.location.href = `/ministry/${ministry.name.toLowerCase().replace(/ /g, '-').replace("'s", "s")}`}
+                      onClick={() => {
+                        const slug = ministry.name.toLowerCase().replace(/ /g, '-').replace("'s", "s").replace('bible-study-groups', 'missions').replace('community-outreach', 'missions');
+                        window.location.href = `/ministry/${slug}`;
+                      }}
                     >
                       Learn More
                     </Button>

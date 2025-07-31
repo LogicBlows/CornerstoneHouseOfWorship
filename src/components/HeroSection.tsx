@@ -20,7 +20,7 @@ const HeroSection = () => {
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground mb-6 leading-tight">
           Welcome to{" "}
           <span className="bg-accent-gradient bg-clip-text text-transparent">
-            Grace Community
+            CornerStone House of Worship
           </span>
         </h1>
         <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto leading-relaxed">

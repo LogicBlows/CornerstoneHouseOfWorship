@@ -28,7 +28,7 @@ const Leadership = () => {
     },
     {
       name: "Ashish Spencer",
-      title: "Senior Worship Leader",
+      title: "Senior Worship Leader/Youth Shepherd",
       description: "Ashish leads our worship ministry, inspiring the congregation through music and helping develop the next generation of worship leaders.",
       email: "worship@cornerstonehow.com",
       phone: "(555) 345-6789"
