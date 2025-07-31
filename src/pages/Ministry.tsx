@@ -92,7 +92,11 @@ const Ministry = () => {
                       variant="outline" 
                       className="mt-4"
                       onClick={() => {
-                        const slug = ministry.name.toLowerCase().replace(/ /g, '-').replace("'s", "s").replace('bible-study-groups', 'missions').replace('community-outreach', 'missions');
+                        let slug = ministry.name.toLowerCase().replace(/ /g, '-').replace("'s", "s");
+                        if (slug === 'worship-ministry') slug = 'worship';
+                        if (slug === 'youth-ministry') slug = 'youth-ministry';
+                        if (slug === 'childrens-ministry') slug = 'childrens-ministry';
+                        if (slug === 'bible-study-groups' || slug === 'community-outreach') slug = 'missions';
                         window.location.href = `/ministry/${slug}`;
                       }}
                     >
