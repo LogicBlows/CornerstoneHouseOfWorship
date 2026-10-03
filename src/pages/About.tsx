@@ -14,7 +14,7 @@ const About = () => {
             About Our Church
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Cornerstone House Of Worship has been serving our community for over 30 years, 
+            Cornerstone House Of Worship has been serving our community last one year years, 
             spreading love, hope, and the Gospel of Jesus Christ.
           </p>
         </div>
@@ -28,9 +28,9 @@ const About = () => {
               <h2 className="text-3xl font-bold text-primary mb-6">Our Story</h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Founded in 1990, Cornerstone House Of Worship began as a small group of believers 
+                  Founded in 2024, Cornerstone House Of Worship began as a small group of believers 
                   meeting in a local community center. Today, we are a thriving congregation 
-                  of over 500 families united in our love for Christ and commitment to serving others.
+                  of many families united in our love for Christ and commitment to serving others.
                 </p>
                 <p>
                   Our mission is to create a welcoming environment where people can encounter 

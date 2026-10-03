@@ -20,10 +20,10 @@ const Leadership = () => {
       phone: "(555) 123-4567"
     },
     {
-      name: "Ps. Vidya Grace",
-      title: "Associate Pastor",
-      description: "Ps. Vidya provides pastoral care and teaches with great passion, helping believers grow deeper in their walk with Christ.",
-      email: "vidya@cornerstonehow.com",
+      name: "Roopali Singh",
+      title: "Worship team",
+      description: "A true worshipper",
+      email: "roopali@cornerstonehow.com",
       phone: "(555) 234-5678"
     },
     {
@@ -32,13 +32,6 @@ const Leadership = () => {
       description: "Ashish leads our worship ministry, inspiring the congregation through music and helping develop the next generation of worship leaders.",
       email: "worship@cornerstonehow.com",
       phone: "(555) 345-6789"
-    },
-    {
-      name: "Victor Matthew",
-      title: "Worship Leader",
-      description: "Victor serves in our worship ministry, bringing passion and skill to enhance our worship experience and glorify God.",
-      email: "worship@cornerstonehow.com",
-      phone: "(555) 456-7890"
     }
   ];
 
