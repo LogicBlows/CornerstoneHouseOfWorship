@@ -25,9 +25,11 @@ const Navigation = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-              <span className="text-lg font-bold text-primary">C</span>
-            </div>
+            <img
+              src="/logo-mark.png"
+              alt="Cornerstone House of Worship logo"
+              className="w-10 h-10 rounded-lg"
+            />
             <span className="text-xl font-bold text-primary">Cornerstone House of Worship</span>
           </Link>
 
