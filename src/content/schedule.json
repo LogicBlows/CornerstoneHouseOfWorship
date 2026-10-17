@@ -1,0 +1,10 @@
+{
+  "gatherings": [
+    { "day": "Sun", "name": "Sunday Service", "time": "11:00 AM", "where": "In person", "featured": true, "prayer": false },
+    { "day": "Sun", "name": "Kids Church", "time": "10:30 AM", "where": "Children's Hall", "featured": false, "prayer": false },
+    { "day": "Tue", "name": "Online prayer", "time": "9:30 PM", "where": "Zoom", "featured": false, "prayer": true },
+    { "day": "Thu", "name": "Worship rehearsal", "time": "[Time]", "where": "", "featured": false, "prayer": false },
+    { "day": "Fri", "name": "Ladies Meeting", "time": "9:30 PM", "where": "", "featured": false, "prayer": true },
+    { "day": "Sat", "name": "Youth", "time": "1:00 – 4:00 PM", "where": "", "featured": false, "prayer": false }
+  ]
+}

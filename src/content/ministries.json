@@ -1,0 +1,11 @@
+{
+  "ministries": [
+    { "name": "Youth Ministry", "when": "Sat 1:00 – 4:00 PM", "blurb": "Worship, Bible study and friendship for young people." },
+    { "name": "Children's Ministry", "when": "Sundays · 10:30 AM", "blurb": "Kids Church runs in the Children's Hall while parents join the main service." },
+    { "name": "Worship Ministry", "when": "Rehearsals Thursdays", "blurb": "Singers and musicians who lead the church in worship each Sunday." },
+    { "name": "Ladies Meeting", "when": "Fri 9:30 PM", "blurb": "A weekly time of prayer and encouragement for women." },
+    { "name": "Bible Study Groups", "when": "Various times", "blurb": "Small groups that open the Word together during the week." },
+    { "name": "Community Outreach", "when": "Monthly", "blurb": "Serving our neighbourhood with practical love." },
+    { "name": "Missions", "when": "Ongoing", "blurb": "Supporting the work of the gospel beyond our city." }
+  ]
+}

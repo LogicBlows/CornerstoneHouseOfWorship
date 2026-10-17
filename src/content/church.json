@@ -1,0 +1,21 @@
+{
+  "name": "Cornerstone House of Worship",
+  "foundedYear": 2024,
+  "address": {
+    "street": "BH 110, Sector 70",
+    "area": "Noida, U.P.",
+    "pin": "201301",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=BH+110+Sector+70+Noida+201301"
+  },
+  "contact": {
+    "phone": "+91 76786 10090",
+    "email": "cornerstonehouseofworship118@gmail.com",
+    "whatsappNumber": "",
+    "whatsappCommunityUrl": ""
+  },
+  "social": {
+    "youtube": "https://www.youtube.com/",
+    "instagram": "https://www.instagram.com/",
+    "facebook": "https://www.facebook.com/"
+  }
+}
