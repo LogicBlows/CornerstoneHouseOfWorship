@@ -1,0 +1,21 @@
+{
+  "albums": [
+    {
+      "name": "Sundays",
+      "photos": [
+        {
+          "image": "/uploads/gallery/sunday-sermon.jpg",
+          "caption": "Sunday sermon"
+        },
+        {
+          "image": "/uploads/gallery/worship-from-the-stage.jpg",
+          "caption": "Worship from the stage"
+        },
+        {
+          "image": "/uploads/gallery/congregation-in-worship.jpg",
+          "caption": "The congregation in worship"
+        }
+      ]
+    }
+  ]
+}

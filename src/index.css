@@ -17,7 +17,7 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 220 15% 15%;
 
-    --primary: 220 70% 25%;
+    --primary: 275 68% 32%;
     --primary-foreground: 0 0% 98%;
 
     --secondary: 45 80% 88%;
@@ -34,7 +34,7 @@ All colors MUST be HSL.
 
     --border: 220 15% 88%;
     --input: 220 15% 88%;
-    --ring: 220 70% 25%;
+    --ring: 275 68% 32%;
 
     --radius: 0.75rem;
 
@@ -109,6 +109,46 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-night text-ivory font-sans antialiased;
+  }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.24em];
+  }
+
+  .pill {
+    @apply inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full border-[1.5px] border-transparent px-6 text-[15px] font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-light;
+  }
+
+  .pill-light {
+    @apply bg-ivory text-night hover:bg-white;
+  }
+
+  .pill-ghost {
+    @apply border-ivory/55 text-ivory hover:border-ivory hover:text-white;
+  }
+
+  .pill-violet {
+    @apply bg-violet text-white hover:bg-violet-dark;
+  }
+
+  .pill-outline {
+    @apply border-ink text-ink hover:bg-ink hover:text-ivory;
+  }
+
+  /* Church-window arch used on photo and portrait frames (3:4 boxes). */
+  .arch {
+    border-radius: 50% 50% 14px 14px / 37.5% 37.5% 14px 14px;
+    overflow: hidden;
+  }
+
+  .field {
+    @apply w-full rounded-2xl border-[1.5px] border-[#cbbfd3] bg-paper px-[18px] py-4 text-base text-ink placeholder:text-[#8b7f93] focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-violet;
   }
 }

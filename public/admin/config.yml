@@ -1,0 +1,274 @@
+# Decap CMS: the content editor at /admin.
+# Every save is committed to GitHub; Netlify then rebuilds the live site.
+
+backend:
+  name: github
+  repo: LogicBlows/CornerstoneHouseOfWorship
+  branch: master # the live site
+
+# When running locally (npm run cms + npm run dev), edit files on this computer instead of GitHub.
+local_backend: true
+
+logo_url: /logo-mark.png
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  # ── Moments (photo albums) ──────────────────────────────────────────────
+  - name: moments
+    label: Moments
+    description: Photo albums for the Moments page. Up to 5 albums, up to 50 photos each. Keep each photo under about 1 MB.
+    files:
+      - name: albums
+        label: Photo albums
+        file: src/content/albums.json
+        fields:
+          - label: Albums
+            label_singular: album
+            name: albums
+            widget: list
+            max: 5
+            collapsed: true
+            summary: "{{fields.name}}"
+            hint: "Up to 5 albums. Drag to reorder; the first album's photos also appear on the home page. Use the ✕ on an album to delete it."
+            fields:
+              - { name: name, label: Album name, widget: string, hint: "e.g. Sundays, Youth Camp 2026, Christmas" }
+              - label: Photos
+                label_singular: photo
+                name: photos
+                widget: list
+                max: 50
+                collapsed: true
+                summary: "{{fields.caption}}"
+                hint: "Up to 50 photos. Drag to reorder."
+                fields:
+                  - { name: image, label: Photo, widget: image, media_folder: /public/uploads/gallery, public_folder: /uploads/gallery }
+                  - { name: caption, label: Caption, widget: string, required: false }
+
+  # ── Sermons ─────────────────────────────────────────────────────────────
+  - name: sermons
+    label: Sermons
+    files:
+      - name: messages
+        label: Sermons & speakers
+        file: src/content/messages.json
+        fields:
+          - label: Sermons
+            name: messages
+            widget: list
+            add_to_top: true
+            summary: "{{fields.title}} · {{fields.date}}"
+            hint: The first sermon in the list is featured on the home and Watch pages.
+            fields:
+              - { name: title, label: Title, widget: string }
+              - name: speaker
+                label: Speaker
+                widget: select
+                options:
+                  - { label: "Pastor's Word", value: pastor }
+                  - { label: "Apostle's Word", value: apostle }
+              - { name: date, label: Date, widget: string, hint: "e.g. 12 Oct 2026" }
+              - { name: scripture, label: Scripture, widget: string, required: false }
+              - { name: summary, label: One-line summary, widget: text, required: false }
+              - { name: youtubeId, label: YouTube link, widget: string, required: false, hint: "Paste the full YouTube link to the sermon." }
+          - label: Speakers
+            name: speakers
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Pastor's Word"
+                name: pastor
+                widget: object
+                fields:
+                  - { name: name, label: Name, widget: string }
+                  - { name: series, label: Series name, widget: string }
+              - label: "Apostle's Word"
+                name: apostle
+                widget: object
+                fields:
+                  - { name: name, label: Name, widget: string }
+                  - { name: series, label: Series name, widget: string }
+
+  # ── Church info ─────────────────────────────────────────────────────────
+  - name: church
+    label: Church info
+    files:
+      - name: details
+        label: Contact & address
+        file: src/content/church.json
+        fields:
+          - { name: name, label: Church name, widget: string }
+          - { name: foundedYear, label: Year founded, widget: number, value_type: int }
+          - label: Address
+            name: address
+            widget: object
+            fields:
+              - { name: street, label: Street, widget: string }
+              - { name: area, label: "Area, city", widget: string }
+              - { name: pin, label: PIN code, widget: string }
+              - { name: mapsUrl, label: Google Maps link, widget: string, hint: "In Google Maps: Share → Copy link" }
+          - label: Contact
+            name: contact
+            widget: object
+            fields:
+              - { name: phone, label: Phone, widget: string }
+              - { name: email, label: Email, widget: string }
+              - { name: whatsappNumber, label: WhatsApp number, widget: string, required: false, hint: "With country code, e.g. 91 76786 10090" }
+              - { name: whatsappCommunityUrl, label: WhatsApp community invite link, widget: string, required: false }
+          - label: Social links
+            name: social
+            widget: object
+            fields:
+              - { name: youtube, label: YouTube, widget: string }
+              - { name: instagram, label: Instagram, widget: string }
+              - { name: facebook, label: Facebook, widget: string }
+
+      - name: schedule
+        label: Weekly schedule
+        file: src/content/schedule.json
+        fields:
+          - label: Gatherings
+            name: gatherings
+            widget: list
+            summary: "{{fields.day}} · {{fields.name}} · {{fields.time}}"
+            fields:
+              - { name: day, label: Day, widget: select, options: [Sun, Mon, Tue, Wed, Thu, Fri, Sat] }
+              - { name: name, label: Name, widget: string }
+              - { name: time, label: Time, widget: string, hint: "e.g. 11:00 AM" }
+              - { name: where, label: Where, widget: string, required: false }
+              - { name: featured, label: Main Sunday service, widget: boolean, default: false, hint: "Highlighted, and its time is shown in the header button. Tick only one." }
+              - { name: prayer, label: Show under "Pray with us", widget: boolean, default: false }
+
+      - name: leaders
+        label: Leaders
+        file: src/content/leaders.json
+        fields:
+          - label: Leaders
+            name: leaders
+            widget: list
+            summary: "{{fields.name}} · {{fields.role}}"
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: role, label: Role, widget: string }
+              - { name: photo, label: Portrait, widget: image, required: false, media_folder: /public/uploads/leaders, public_folder: /uploads/leaders, hint: "A portrait (taller than wide) looks best." }
+              - { name: showOnHome, label: Show on home page, widget: boolean, default: false, hint: "The home page shows up to three." }
+
+      - name: ministries
+        label: Ministries
+        file: src/content/ministries.json
+        fields:
+          - label: Ministries
+            name: ministries
+            widget: list
+            summary: "{{fields.name}} · {{fields.when}}"
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: when, label: When it meets, widget: string }
+              - { name: blurb, label: Description, widget: text }
+
+      - name: beliefs
+        label: Beliefs
+        file: src/content/beliefs.json
+        fields:
+          - label: Beliefs
+            name: beliefs
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: text, label: Statement, widget: text }
+
+      - name: testimonies
+        label: Testimonies
+        file: src/content/testimonies.json
+        fields:
+          - label: Testimonies
+            name: testimonies
+            widget: list
+            add_to_top: true
+            summary: "{{fields.name}} · {{fields.when}}"
+            fields:
+              - { name: quote, label: Testimony, widget: text }
+              - { name: name, label: First name, widget: string }
+              - { name: when, label: Month, widget: string }
+
+  # ── Page text ───────────────────────────────────────────────────────────
+  # On each page the "accent" text is the part shown in italic purple.
+  - name: pages
+    label: Page text
+    files:
+      - name: home
+        label: Home
+        file: src/content/pages/home.json
+        fields:
+          - { name: heroEyebrow, label: Small heading above the title, widget: string }
+          - { name: heroTitle, label: Title, widget: string }
+          - { name: heroAccent, label: Title (accent line), widget: string }
+          - { name: heroIntro, label: Intro, widget: text }
+          - { name: verseRef, label: Verse reference, widget: string }
+          - { name: verseText, label: Verse, widget: string }
+          - { name: verseAccent, label: Verse (accent ending), widget: string }
+          - { name: foundationText, label: Text under the verse, widget: text }
+          - { name: foundationPhotoLeft, label: Arch photo (left), widget: image }
+          - { name: foundationPhotoRight, label: Arch photo (right), widget: image }
+          - { name: weekTitle, label: Schedule heading, widget: string }
+          - { name: weekAccent, label: Schedule heading (accent), widget: string }
+          - { name: weekNote, label: Schedule note, widget: string }
+          - { name: messagePoster, label: Sermon video cover photo, widget: image }
+          - { name: prayerTitle, label: Prayer heading, widget: string }
+          - { name: prayerAccent, label: Prayer heading (accent), widget: string }
+          - { name: prayerIntro, label: Prayer intro, widget: text }
+          - { name: momentsTitle, label: Photos heading, widget: string }
+          - { name: shepherdsTitle, label: Leaders heading, widget: string }
+          - { name: shepherdsNote, label: Leaders note, widget: string }
+
+      - name: watch
+        label: Watch
+        file: src/content/pages/watch.json
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: accent, label: Title (accent line), widget: string }
+          - { name: liveTitle, label: Live stream heading, widget: string }
+          - { name: liveNote, label: Live stream note, widget: string }
+
+      - name: pray
+        label: Pray
+        file: src/content/pages/pray.json
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: accent, label: Title (accent), widget: string }
+          - { name: intro, label: Intro, widget: text }
+          - { name: topics, label: Prayer topics (home page form), widget: list }
+          - { name: whatsappTitle, label: WhatsApp box heading, widget: string }
+          - { name: whatsappNote, label: WhatsApp box note, widget: string }
+          - { name: testimoniesTitle, label: Testimonies heading, widget: string }
+
+      - name: moments
+        label: Moments
+        file: src/content/pages/moments.json
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: accent, label: Title (accent line), widget: string }
+
+      - name: our-house
+        label: Our House
+        file: src/content/pages/our-house.json
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: accent, label: Title (accent), widget: string }
+          - { name: story, label: Our story, widget: text }
+          - { name: vision, label: Vision, widget: text }
+          - { name: photo, label: Arch photo, widget: image }
+          - { name: beliefsTitle, label: Beliefs heading, widget: string }
+          - { name: leadersTitle, label: Leaders heading, widget: string }
+          - { name: ministriesTitle, label: Ministries heading, widget: string }
+          - { name: ministriesIntro, label: Ministries intro, widget: string }
+          - { name: ctaTitle, label: Closing banner heading, widget: string }
+          - { name: ctaAccent, label: Closing banner heading (accent), widget: string }
+          - { name: ctaPhoto, label: Closing banner photo, widget: image }
+
+      - name: footer
+        label: Footer
+        file: src/content/pages/footer.json
+        fields:
+          - { name: whatsappText, label: WhatsApp community text, widget: text }

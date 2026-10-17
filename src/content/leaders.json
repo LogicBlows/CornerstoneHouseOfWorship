@@ -1,0 +1,9 @@
+{
+  "leaders": [
+    { "name": "Apostle Vaibhav", "role": "Apostle", "photo": "", "showOnHome": true },
+    { "name": "Ps. Nirmal Kumar", "role": "Senior Pastor", "photo": "", "showOnHome": true },
+    { "name": "Ps. Mamta Kumar", "role": "Co-Pastor", "photo": "", "showOnHome": true },
+    { "name": "Roopali Singh", "role": "Worship team", "photo": "", "showOnHome": false },
+    { "name": "Ashish Spencer", "role": "Worship Leader · Youth Shepherd", "photo": "", "showOnHome": false }
+  ]
+}

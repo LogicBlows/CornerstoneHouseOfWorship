@@ -18,7 +18,30 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Figtree', 'system-ui', 'sans-serif'],
+				serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+				script: ['"Great Vibes"', 'cursive'],
+			},
 			colors: {
+				// Design 2 "Evening Light" palette
+				night: '#140a1c',
+				plum: '#22122e',
+				abyss: '#0d0613',
+				ivory: '#f6f0e8',
+				paper: '#fffdf9',
+				ink: '#1f1426',
+				haze: '#e6dcee',
+				mist: '#c9bcd4',
+				slate: '#5e5366',
+				line: '#ddd2e2',
+				violet: {
+					DEFAULT: '#5B1A8A',
+					dark: '#4a136f',
+					light: '#c9a2f2',
+					pale: '#e4cdfb',
+					wash: '#ebe0f3',
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
