@@ -56,6 +56,8 @@ collections:
           - { name: liveNote, label: Live stream note, widget: string }
           - { name: liveButton, label: Button text, widget: string, default: Open YouTube }
           - { name: liveUrl, label: Live stream / channel link, widget: string, required: false, hint: "Where the button goes, e.g. your YouTube channel or this week's live stream link." }
+          - { name: channelText, label: Bottom link text, widget: string, default: "More on our YouTube channel →", hint: "The link under the past messages." }
+          - { name: channelUrl, label: Bottom link address, widget: string, required: false, hint: "Usually your YouTube channel." }
 
       - name: messages
         label: Messages

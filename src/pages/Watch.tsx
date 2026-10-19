@@ -9,6 +9,7 @@ type Filter = "all" | Speaker;
 
 const watch = pages.watch;
 const liveUrl = watch.liveUrl || site.social.youtube;
+const channelUrl = watch.channelUrl || site.social.youtube;
 const hasBothSpeakers = new Set(pastMessages.map((m) => m.speaker)).size > 1;
 
 const filters: { id: Filter; label: string }[] = [
@@ -131,8 +132,8 @@ const Watch = () => {
           )}
 
           <p className={cn("text-center", pastMessages.length > 0 && "mt-12")}>
-            <a href={site.social.youtube} target="_blank" rel="noreferrer" className="font-bold text-violet-light hover:text-violet-pale">
-              More on our YouTube channel →
+            <a href={channelUrl} target="_blank" rel="noreferrer" className="font-bold text-violet-light hover:text-violet-pale">
+              {watch.channelText || "More on our YouTube channel →"}
             </a>
           </p>
         </div>
