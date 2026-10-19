@@ -1,19 +1,10 @@
 {
   "albums": [
     {
-      "name": "Sundays",
+      "name": "2nd Church Anniversary",
       "photos": [
         {
-          "image": "/uploads/gallery/sunday-sermon.jpg",
-          "caption": "Sunday sermon"
-        },
-        {
-          "image": "/uploads/gallery/worship-from-the-stage.jpg",
-          "caption": "Worship from the stage"
-        },
-        {
-          "image": "/uploads/gallery/congregation-in-worship.jpg",
-          "caption": "The congregation in worship"
+          "image": "/uploads/gallery/whatsapp-image-2026-10-19-at-11.44.07-am.jpeg"
         }
       ]
     }
