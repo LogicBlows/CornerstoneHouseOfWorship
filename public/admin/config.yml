@@ -15,35 +15,30 @@ public_folder: /uploads
 
 collections:
   # ── Moments (photo albums) ──────────────────────────────────────────────
-  - name: moments
+  # Each album is its own entry, so editing one album can never change another.
+  - name: albums
     label: Moments
-    description: Photo albums for the Moments page. Up to 5 albums, up to 50 photos each. Keep each photo under about 1 MB.
-    files:
-      - name: albums
-        label: Photo albums
-        file: src/content/albums.json
-        fields:
-          - label: Albums
-            label_singular: album
-            name: albums
-            widget: list
-            max: 5
-            collapsed: true
-            summary: "{{fields.name}}"
-            hint: "Up to 5 albums. Drag to reorder; the first album's photos also appear on the home page. Use the ✕ on an album to delete it."
-            fields:
-              - { name: name, label: Album name, widget: string, hint: "e.g. Sundays, Youth Camp 2026, Christmas" }
-              - label: Photos
-                label_singular: photo
-                name: photos
-                widget: list
-                max: 50
-                collapsed: true
-                summary: "{{fields.caption}}"
-                hint: "Up to 50 photos. Drag to reorder."
-                fields:
-                  - { name: image, label: Photo, widget: image, media_folder: /public/uploads/gallery, public_folder: /uploads/gallery }
-                  - { name: caption, label: Caption, widget: string, required: false }
+    label_singular: Album
+    description: "Photo albums on the Moments page. The website shows up to 5 albums (by the Order number) and up to 50 photos per album. Keep photos under about 1 MB each."
+    folder: src/content/albums
+    create: true
+    delete: true
+    extension: json
+    format: json
+    slug: "{{slug}}"
+    identifier_field: name
+    summary: "{{order}}. {{name}}"
+    sortable_fields: [order, name]
+    media_folder: /public/uploads/gallery
+    public_folder: /uploads/gallery
+    fields:
+      - { name: name, label: Album name, widget: string, hint: "e.g. Sundays, Youth Camp 2026, Christmas" }
+      - { name: order, label: Order on the page, widget: number, value_type: int, min: 1, max: 5, default: 1, hint: "1 = shown first. The first album's photos also appear on the home page." }
+      - name: photos
+        label: Photos
+        widget: image
+        media_library: { config: { multiple: true } }
+        hint: "Click to choose photos. In the window that opens, upload or tick several photos at once, then click Choose selected. Up to 50 photos."
 
   # ── Sermons ─────────────────────────────────────────────────────────────
   - name: sermons

@@ -1,21 +1,26 @@
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { cn } from "@/lib/utils";
 import SiteLayout from "@/components/site/SiteLayout";
-import { albums, photos } from "@/lib/gallery";
+import { albums } from "@/lib/gallery";
 import { pages } from "@/config/site";
 
+type Viewing = { album: number; photo: number } | null;
+
 const Moments = () => {
-  const [album, setAlbum] = useState("all");
-  const [open, setOpen] = useState<number | null>(null);
+  const [open, setOpen] = useState<Viewing>(null);
 
-  const shown = photos.filter((p) => album === "all" || p.album === album);
-  const current = open === null ? null : shown[open];
+  const album = open ? albums[open.album] : null;
+  const current = open && album ? album.photos[open.photo] : null;
 
-  const step = (dir: 1 | -1) => setOpen((i) => (i === null ? i : (i + dir + shown.length) % shown.length));
+  const step = (dir: 1 | -1) =>
+    setOpen((v) => {
+      if (!v) return v;
+      const count = albums[v.album].photos.length;
+      return { ...v, photo: (v.photo + dir + count) % count };
+    });
 
   useEffect(() => {
-    if (open === null) return;
+    if (!open) return;
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(null);
@@ -27,86 +32,71 @@ const Moments = () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open, shown.length]);
+  }, [open]);
 
   return (
     <SiteLayout title="Moments" description="Photos from Sunday services, youth gatherings, events and outreach at Cornerstone House of Worship.">
-      <section className="pb-12 pt-12 sm:pb-14 sm:pt-20">
+      <section className="pb-12 pt-12 sm:pb-16 sm:pt-20">
         <div className="wrap">
           <p className="eyebrow mb-5 text-violet-light">Moments</p>
-          <div className="flex flex-wrap items-end justify-between gap-8">
-            <h1 className="font-serif text-[60px] font-medium leading-[0.92] sm:text-[104px]">
-              {pages.moments.title}
-              <br />
-              <em className="text-violet-pale">{pages.moments.accent}</em>
-            </h1>
-            {albums.length > 1 && (
-              <div role="group" aria-label="Filter by album" className="flex flex-wrap gap-2.5">
-                {[{ id: "all", label: "All" }, ...albums].map((a) => (
-                  <button
-                    key={a.id}
-                    type="button"
-                    aria-pressed={album === a.id}
-                    onClick={() => {
-                      setAlbum(a.id);
-                      setOpen(null);
-                    }}
-                    className={cn(
-                      "min-h-11 rounded-full border-[1.5px] px-5 text-[15px] font-semibold transition-colors",
-                      album === a.id ? "border-ivory bg-ivory text-night" : "border-ivory/35 text-[#efe6f6] hover:border-ivory",
-                    )}
-                  >
-                    {a.label}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+          <h1 className="font-serif text-[60px] font-medium leading-[0.92] sm:text-[104px]">
+            {pages.moments.title}
+            <br />
+            <em className="text-violet-pale">{pages.moments.accent}</em>
+          </h1>
         </div>
       </section>
 
-      <section className="pb-24 sm:pb-32">
-        <div className="wrap">
-          {shown.length === 0 ? (
-            <p className="py-20 text-center text-mist">No photos in this album yet.</p>
-          ) : (
-            <div className="gap-4 [column-width:280px]">
-              {shown.map((p, i) => (
+      <div className="wrap space-y-20 pb-24 sm:space-y-24 sm:pb-32">
+        {albums.length === 0 && <p className="py-20 text-center text-mist">Photos coming soon.</p>}
+
+        {albums.map((a, albumIndex) => (
+          <section key={a.id} aria-labelledby={`album-${a.id}`}>
+            <div className="mb-6 flex flex-wrap items-baseline justify-between gap-3 border-b border-ivory/15 pb-4 sm:mb-8">
+              <h2 id={`album-${a.id}`} className="font-serif text-[36px] font-medium leading-tight sm:text-[48px]">
+                {a.label}
+              </h2>
+              <p className="text-sm text-mist">
+                {a.photos.length} {a.photos.length === 1 ? "photo" : "photos"}
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
+              {a.photos.map((p, photoIndex) => (
                 <button
                   key={p.src}
                   type="button"
-                  onClick={() => setOpen(i)}
-                  aria-label={`Open photo: ${p.caption}`}
-                  className="group mb-4 block w-full cursor-zoom-in overflow-hidden rounded-[18px] [break-inside:avoid]"
+                  onClick={() => setOpen({ album: albumIndex, photo: photoIndex })}
+                  aria-label={`Open ${p.caption}`}
+                  className="group aspect-square cursor-zoom-in overflow-hidden rounded-2xl bg-plum"
                 >
                   <img
                     src={p.src}
                     alt={p.caption}
                     loading="lazy"
-                    className="block h-auto w-full transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                   />
                 </button>
               ))}
             </div>
-          )}
-          <p className="mt-8 text-center text-mist">Tap any photo to view it full-screen.</p>
-        </div>
-      </section>
+          </section>
+        ))}
 
-      {current && (
+        {albums.length > 0 && <p className="text-center text-mist">Tap any photo to view it full-screen.</p>}
+      </div>
+
+      {current && album && open && (
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="Photo viewer"
+          aria-label={`${album.label} photo viewer`}
           className="fixed inset-0 z-50 flex flex-col bg-abyss/[0.97] px-4 py-5 sm:px-8"
           onClick={(e) => e.target === e.currentTarget && setOpen(null)}
         >
           <div className="mx-auto flex w-full max-w-[1100px] items-center justify-between gap-4">
             <p className="text-haze">
-              {current.caption}
+              {album.label}
               <span className="ml-3 text-sm text-mist">
-                {(open ?? 0) + 1} / {shown.length}
+                {open.photo + 1} / {album.photos.length}
               </span>
             </p>
             <button

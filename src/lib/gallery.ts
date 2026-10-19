@@ -1,35 +1,34 @@
 // Photo albums for the Moments page, edited in the CMS under "Moments".
-// Albums and photos live in src/content/albums.json; image files in public/uploads/gallery/.
-// Albums and photos appear in the order they are arranged in the editor.
-
-import albumsFile from "@/content/albums.json";
+// Each album is one JSON file in src/content/albums/ listing image paths in
+// public/uploads/gallery/. Albums are shown by their "order" number.
 
 export const MAX_ALBUMS = 5;
 export const MAX_PHOTOS_PER_ALBUM = 50;
 
+type AlbumFile = { name?: string; order?: number; photos?: string[] | string };
+
+const files = import.meta.glob("/src/content/albums/*.json", { eager: true, import: "default" }) as Record<
+  string,
+  AlbumFile
+>;
+
 export type Photo = { src: string; album: string; caption: string };
 export type Album = { id: string; label: string; photos: Photo[] };
 
-const slugify = (text: string) =>
-  text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-
-type AlbumEntry = { name: string; photos?: { image: string; caption?: string }[] };
-
-export const albums: Album[] = (albumsFile.albums as AlbumEntry[])
-  .slice(0, MAX_ALBUMS)
+export const albums: Album[] = Object.entries(files)
+  .map(([path, a]) => ({ ...a, id: path.split("/").pop()!.replace(/\.json$/, "") }))
   .filter((a) => a.name)
-  .map((a, i) => {
-    const id = slugify(a.name) || `album-${i + 1}`;
+  .sort((a, b) => (a.order ?? 99) - (b.order ?? 99) || a.name!.localeCompare(b.name!))
+  .slice(0, MAX_ALBUMS)
+  .map((a) => {
+    const list = Array.isArray(a.photos) ? a.photos : a.photos ? [a.photos] : [];
     return {
-      id,
-      label: a.name,
-      photos: (a.photos ?? [])
-        .filter((p) => p.image)
+      id: a.id,
+      label: a.name!,
+      photos: list
+        .filter(Boolean)
         .slice(0, MAX_PHOTOS_PER_ALBUM)
-        .map((p) => ({ src: p.image, album: id, caption: p.caption || a.name })),
+        .map((src, i) => ({ src, album: a.id, caption: `${a.name} · photo ${i + 1}` })),
     };
   })
   .filter((a) => a.photos.length > 0);
