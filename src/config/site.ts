@@ -54,14 +54,31 @@ export const testimonies = testimoniesFile.testimonies;
 
 export type Speaker = "pastor" | "apostle";
 
+export const MAX_PAST_MESSAGES = 4;
+
+type MessageEntry = {
+  title?: string;
+  speaker?: Speaker;
+  date?: string;
+  scripture?: string;
+  summary?: string;
+  /** Full YouTube link to the sermon. */
+  youtube?: string;
+  /** Optional uploaded cover image; otherwise YouTube's own thumbnail is used. */
+  thumbnail?: string;
+};
+
 export type Message = {
   title: string;
   speaker: Speaker;
   date: string;
   scripture?: string;
   summary?: string;
-  // The part after "watch?v=" in a YouTube link.
   youtubeId?: string;
+  /** Link to watch the video on YouTube, if there is one. */
+  watchUrl?: string;
+  /** Cover image: the uploaded thumbnail, else YouTube's, else none. */
+  thumbnail?: string;
 };
 
 /** Accepts a full YouTube link (watch, youtu.be, live, shorts) or a bare video id. */
@@ -71,9 +88,31 @@ const toYoutubeId = (value?: string) => {
   return match ? match[1] : /^[\w-]{11}$/.test(value.trim()) ? value.trim() : undefined;
 };
 
+const toMessage = (m: MessageEntry): Message | null => {
+  if (!m?.title) return null;
+  const youtubeId = toYoutubeId(m.youtube);
+  return {
+    title: m.title,
+    speaker: m.speaker === "apostle" ? "apostle" : "pastor",
+    date: m.date ?? "",
+    scripture: m.scripture,
+    summary: m.summary,
+    youtubeId,
+    watchUrl: youtubeId ? `https://www.youtube.com/watch?v=${youtubeId}` : undefined,
+    thumbnail: m.thumbnail || (youtubeId ? `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg` : undefined),
+  };
+};
+
 export const speakers = messagesFile.speakers as Record<Speaker, { name: string; series: string }>;
-// Newest first. The first message is featured on the home and Watch pages.
-export const messages = (messagesFile.messages as Message[]).map((m) => ({ ...m, youtubeId: toYoutubeId(m.youtubeId) }));
+/** The featured message on the home and Watch pages. */
+export const latestMessage = toMessage(messagesFile.latest as MessageEntry);
+/** Up to four earlier messages, in the order set in the editor. */
+export const pastMessages = ((messagesFile.past ?? []) as MessageEntry[])
+  .map(toMessage)
+  .filter((m): m is Message => m !== null)
+  .slice(0, MAX_PAST_MESSAGES);
+/** Latest first, then past messages. */
+export const messages = [latestMessage, ...pastMessages].filter((m): m is Message => m !== null);
 
 export const pages = {
   home: homePage,

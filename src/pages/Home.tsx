@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import SiteLayout from "@/components/site/SiteLayout";
 import PrayerForm from "@/components/site/PrayerForm";
 import VideoPoster from "@/components/site/VideoPoster";
-import { gatherings, leaders, mainService, messages, pages, site, speakers, sundayGatherings, weekDays, type Speaker } from "@/config/site";
+import { gatherings, latestMessage, leaders, mainService, messages, pages, site, speakers, sundayGatherings, weekDays, type Speaker } from "@/config/site";
 import { photos } from "@/lib/gallery";
 import heroDuotone from "@/assets/hero-duotone.jpg";
 
@@ -13,7 +13,7 @@ const home = pages.home;
 const otherSunday = sundayGatherings.find((g) => g !== mainService);
 
 const Home = () => {
-  const [speaker, setSpeaker] = useState<Speaker>("pastor");
+  const [speaker, setSpeaker] = useState<Speaker>(latestMessage?.speaker ?? "pastor");
   const latest = messages.find((m) => m.speaker === speaker) ?? messages[0];
 
   return (
@@ -163,47 +163,48 @@ const Home = () => {
       </section>
 
       {/* From the pulpit */}
-      <section className="bg-night py-20 sm:py-28 lg:py-36">
-        <div className="wrap grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <VideoPoster message={latest} poster={home.messagePoster} className="aspect-[16/10] rounded-[18px] sm:rounded-3xl" />
-          <div>
-            <p className="eyebrow mb-5 text-violet-light">From the pulpit</p>
-            <div role="tablist" aria-label="Choose a speaker" className="mb-8 flex gap-7 border-b border-ivory/20">
-              {(Object.keys(speakers) as Speaker[]).map((key) => (
-                <button
-                  key={key}
-                  type="button"
-                  role="tab"
-                  aria-selected={speaker === key}
-                  onClick={() => setSpeaker(key)}
-                  className={cn(
-                    "-mb-px min-h-11 border-b-2 text-base font-semibold transition-colors",
-                    speaker === key ? "border-violet-light text-white" : "border-transparent text-mist hover:text-white",
-                  )}
-                >
-                  {speakers[key].series}
-                </button>
-              ))}
-            </div>
-            <h2 className="mb-4 font-serif text-[34px] font-medium leading-[1.04] sm:text-[52px]">{latest.title}</h2>
-            <p className="mb-2 text-lg text-haze">
-              {speakers[latest.speaker].name} · {speakers[latest.speaker].series}
-            </p>
-            <p className="mb-9 text-[15px] text-mist">
-              {latest.date}
-              {latest.scripture ? ` · ${latest.scripture}` : ""}
-            </p>
-            <div className="flex flex-wrap gap-3.5">
-              <Link to="/watch" className="pill pill-light">
-                All messages
-              </Link>
-              <a href={site.social.youtube} target="_blank" rel="noreferrer" className="pill pill-ghost">
-                Join us live on YouTube
-              </a>
+      {latest && (
+        <section className="bg-night py-20 sm:py-28 lg:py-36">
+          <div className="wrap grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <VideoPoster key={latest.title + latest.speaker} message={latest} className="aspect-[16/10] rounded-[18px] sm:rounded-3xl" />
+            <div>
+              <p className="eyebrow mb-5 text-violet-light">From the pulpit</p>
+              <div role="tablist" aria-label="Choose a speaker" className="mb-8 flex gap-7 border-b border-ivory/20">
+                {(Object.keys(speakers) as Speaker[]).map((key) => (
+                  <button
+                    key={key}
+                    type="button"
+                    role="tab"
+                    aria-selected={speaker === key}
+                    onClick={() => setSpeaker(key)}
+                    className={cn(
+                      "-mb-px min-h-11 border-b-2 text-base font-semibold transition-colors",
+                      speaker === key ? "border-violet-light text-white" : "border-transparent text-mist hover:text-white",
+                    )}
+                  >
+                    {speakers[key].series}
+                  </button>
+                ))}
+              </div>
+              <h2 className="mb-4 font-serif text-[34px] font-medium leading-[1.04] sm:text-[52px]">{latest.title}</h2>
+              <p className="mb-2 text-lg text-haze">
+                {speakers[latest.speaker].name} · {speakers[latest.speaker].series}
+              </p>
+              <p className="mb-9 text-[15px] text-mist">
+                {[latest.date, latest.scripture].filter(Boolean).join(" · ")}
+              </p>
+              <div className="flex flex-wrap gap-3.5">
+                <Link to="/watch" className="pill pill-light">
+                  All messages
+                </Link>
+                <a href={pages.watch.liveUrl || site.social.youtube} target="_blank" rel="noreferrer" className="pill pill-ghost">
+                  Join us live on YouTube
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Prayer */}
       <section className="bg-ivory py-20 text-ink sm:py-28 lg:py-36">

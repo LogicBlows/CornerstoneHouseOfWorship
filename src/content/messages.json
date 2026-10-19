@@ -3,12 +3,14 @@
     "pastor": { "name": "Ps. Nirmal Kumar", "series": "Pastor's Word" },
     "apostle": { "name": "Apostle Vaibhav", "series": "Apostle's Word" }
   },
-  "messages": [
-    { "title": "[Latest sermon title]", "speaker": "pastor", "date": "[Date]", "scripture": "[Scripture]", "summary": "[One-line summary of the message.]", "youtubeId": "" },
-    { "title": "[Sermon title]", "speaker": "apostle", "date": "[Date]", "scripture": "", "summary": "", "youtubeId": "" },
-    { "title": "[Sermon title]", "speaker": "pastor", "date": "[Date]", "scripture": "", "summary": "", "youtubeId": "" },
-    { "title": "[Sermon title]", "speaker": "pastor", "date": "[Date]", "scripture": "", "summary": "", "youtubeId": "" },
-    { "title": "[Sermon title]", "speaker": "apostle", "date": "[Date]", "scripture": "", "summary": "", "youtubeId": "" },
-    { "title": "[Sermon title]", "speaker": "pastor", "date": "[Date]", "scripture": "", "summary": "", "youtubeId": "" }
-  ]
+  "latest": {
+    "title": "[Latest sermon title]",
+    "speaker": "pastor",
+    "date": "[Date]",
+    "scripture": "[Scripture]",
+    "summary": "[One-line summary of the message.]",
+    "youtube": "",
+    "thumbnail": ""
+  },
+  "past": []
 }
