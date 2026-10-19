@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import SiteLayout from "@/components/site/SiteLayout";
 import PrayerForm from "@/components/site/PrayerForm";
 import VideoPoster from "@/components/site/VideoPoster";
-import { gatherings, latestMessage, leaders, mainService, messages, pages, site, speakers, sundayGatherings, weekDays, type Speaker } from "@/config/site";
+import { churchChannel, gatherings, latestMessage, leaders, mainService, messages, pages, site, speakerChannel, speakers, sundayGatherings, weekDays, type Speaker } from "@/config/site";
 import { photos } from "@/lib/gallery";
 import heroDuotone from "@/assets/hero-duotone.jpg";
 
@@ -197,9 +197,15 @@ const Home = () => {
                 <Link to="/watch" className="pill pill-light">
                   All messages
                 </Link>
-                <a href={pages.watch.liveUrl || site.social.youtube} target="_blank" rel="noreferrer" className="pill pill-ghost">
-                  Join us live on YouTube
-                </a>
+                {speakerChannel(latest.speaker) === churchChannel ? (
+                  <a href={pages.watch.liveUrl || churchChannel} target="_blank" rel="noreferrer" className="pill pill-ghost">
+                    Join us live on YouTube
+                  </a>
+                ) : (
+                  <a href={speakerChannel(latest.speaker)} target="_blank" rel="noreferrer" className="pill pill-ghost">
+                    {speakers[latest.speaker].series} on YouTube
+                  </a>
+                )}
               </div>
             </div>
           </div>

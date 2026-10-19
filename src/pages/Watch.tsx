@@ -3,7 +3,7 @@ import { Play } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SiteLayout from "@/components/site/SiteLayout";
 import VideoPoster, { VideoThumbnail } from "@/components/site/VideoPoster";
-import { latestMessage, pages, pastMessages, site, speakers, type Message, type Speaker } from "@/config/site";
+import { churchChannel, latestMessage, pages, pastMessages, site, speakerChannel, speakers, type Message, type Speaker } from "@/config/site";
 
 type Filter = "all" | Speaker;
 
@@ -51,6 +51,17 @@ const MessageCard = ({ message }: { message: Message }) => {
 const Watch = () => {
   const [filter, setFilter] = useState<Filter>("all");
   const shown = pastMessages.filter((m) => filter === "all" || m.speaker === filter);
+
+  // "More on YouTube" links: the church channel, plus any speaker with their own channel.
+  const channelLinks =
+    filter === "all"
+      ? [
+          { text: watch.channelText || "More on our YouTube channel →", url: churchChannel },
+          ...(Object.keys(speakers) as Speaker[])
+            .filter((s) => speakerChannel(s) !== churchChannel)
+            .map((s) => ({ text: `More ${speakers[s].series} on YouTube →`, url: speakerChannel(s) })),
+        ]
+      : [{ text: `More ${speakers[filter].series} on YouTube →`, url: speakerChannel(filter) }];
 
   return (
     <SiteLayout title="Watch" description="Sermons from Pastor's Word and Apostle's Word at Cornerstone House of Worship.">
@@ -130,10 +141,12 @@ const Watch = () => {
             </>
           )}
 
-          <p className={cn("text-center", pastMessages.length > 0 && "mt-12")}>
-            <a href={site.social.youtube} target="_blank" rel="noreferrer" className="font-bold text-violet-light hover:text-violet-pale">
-              More on our YouTube channel →
-            </a>
+          <p className={cn("flex flex-wrap justify-center gap-x-8 gap-y-3 text-center", pastMessages.length > 0 && "mt-12")}>
+            {channelLinks.map((l) => (
+              <a key={l.url} href={l.url} target="_blank" rel="noreferrer" className="font-bold text-violet-light hover:text-violet-pale">
+                {l.text}
+              </a>
+            ))}
           </p>
         </div>
       </section>

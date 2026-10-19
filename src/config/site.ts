@@ -103,7 +103,11 @@ const toMessage = (m: MessageEntry): Message | null => {
   };
 };
 
-export const speakers = messagesFile.speakers as Record<Speaker, { name: string; series: string }>;
+export const speakers = messagesFile.speakers as Record<Speaker, { name: string; series: string; channel?: string }>;
+/** The church's own YouTube channel (Watch page link, else the social link). */
+export const churchChannel = watchPage.channelUrl || site.social.youtube;
+/** A speaker's YouTube channel, falling back to the church channel. */
+export const speakerChannel = (speaker: Speaker) => speakers[speaker].channel || churchChannel;
 /** The featured message on the home and Watch pages. */
 export const latestMessage = toMessage(messagesFile.latest as MessageEntry);
 /** Up to four earlier messages, in the order set in the editor. */
