@@ -1,14 +1,38 @@
 {
   "speakers": {
-    "pastor": { "name": "Ps. Nirmal Kumar", "series": "Pastor's Word" },
-    "apostle": { "name": "Apostle Vaibhav", "series": "Apostle's Word" }
+    "pastor": {
+      "name": "Ps. Nirmal Kumar",
+      "series": "Pastor's Word"
+    },
+    "apostle": {
+      "name": "Apostle Vaibhav",
+      "series": "Apostle's Word"
+    }
   },
-  "messages": [
-    { "title": "[Latest sermon title]", "speaker": "pastor", "date": "[Date]", "scripture": "[Scripture]", "summary": "[One-line summary of the message.]", "youtubeId": "" },
-    { "title": "[Sermon title]", "speaker": "apostle", "date": "[Date]", "scripture": "", "summary": "", "youtubeId": "" },
-    { "title": "[Sermon title]", "speaker": "pastor", "date": "[Date]", "scripture": "", "summary": "", "youtubeId": "" },
-    { "title": "[Sermon title]", "speaker": "pastor", "date": "[Date]", "scripture": "", "summary": "", "youtubeId": "" },
-    { "title": "[Sermon title]", "speaker": "apostle", "date": "[Date]", "scripture": "", "summary": "", "youtubeId": "" },
-    { "title": "[Sermon title]", "speaker": "pastor", "date": "[Date]", "scripture": "", "summary": "", "youtubeId": "" }
+  "latest": {
+    "title": "THE LIVING WORD | Part 3 | Sunday Sermon",
+    "speaker": "pastor",
+    "date": "",
+    "scripture": "",
+    "summary": "",
+    "youtube": "https://www.youtube.com/watch?v=aVrbrMK_fm8",
+    "thumbnail": ""
+  },
+  "past": [
+    {
+      "speaker": "pastor",
+      "title": "THE LIVING WORD | Part 2 | Sunday Sermon",
+      "youtube": "https://www.youtube.com/watch?v=wHgHZuIp3zU"
+    },
+    {
+      "speaker": "pastor",
+      "title": "THE LIVING WORD | Part 1 | Sunday Sermon",
+      "youtube": "https://www.youtube.com/watch?v=HJHH499Y0LE"
+    },
+    {
+      "speaker": "apostle",
+      "title": " The God Who Restores - Part 1 | Pastor Vaibhav \"Sunny\" Kapoor | Hindi",
+      "youtube": "https://www.youtube.com/watch?v=LvV7jeQZ704"
+    }
   ]
 }

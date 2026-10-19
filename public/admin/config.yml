@@ -40,32 +40,65 @@ collections:
         media_library: { config: { multiple: true } }
         hint: "Click to choose photos. In the window that opens, upload or tick several photos at once, then click Choose selected. Up to 50 photos."
 
-  # ── Sermons ─────────────────────────────────────────────────────────────
-  - name: sermons
-    label: Sermons
+  # ── Watch ───────────────────────────────────────────────────────────────
+  # Everything on the Watch page: the live stream box, the latest message and up to 4 past messages.
+  - name: watch
+    label: Watch
+    description: "Everything on the Watch page. The latest message is also shown on the home page."
     files:
+      - name: live
+        label: Live stream & page heading
+        file: src/content/pages/watch.json
+        fields:
+          - { name: title, label: Page title, widget: string }
+          - { name: accent, label: Page title (accent line), widget: string }
+          - { name: liveTitle, label: Live stream heading, widget: string, hint: "e.g. Live every Sunday, 11:00 AM" }
+          - { name: liveNote, label: Live stream note, widget: string }
+          - { name: liveButton, label: Button text, widget: string, default: Open YouTube }
+          - { name: liveUrl, label: Live stream / channel link, widget: string, required: false, hint: "Where the button goes, e.g. your YouTube channel or this week's live stream link." }
+
       - name: messages
-        label: Sermons & speakers
+        label: Messages
         file: src/content/messages.json
         fields:
-          - label: Sermons
-            name: messages
-            widget: list
-            add_to_top: true
-            summary: "{{fields.title}} · {{fields.date}}"
-            hint: The first sermon in the list is featured on the home and Watch pages.
+          - label: Latest message
+            name: latest
+            widget: object
+            hint: "Featured at the top of the Watch page and on the home page."
             fields:
               - { name: title, label: Title, widget: string }
               - name: speaker
                 label: Speaker
                 widget: select
+                default: pastor
                 options:
                   - { label: "Pastor's Word", value: pastor }
                   - { label: "Apostle's Word", value: apostle }
-              - { name: date, label: Date, widget: string, hint: "e.g. 12 Oct 2026" }
+              - { name: date, label: Date, widget: string, required: false, hint: "e.g. 12 Oct 2026" }
+              - { name: youtube, label: YouTube link, widget: string, required: false, hint: "On YouTube click Share, then Copy, and paste the link here. The video thumbnail is added automatically." }
+              - { name: thumbnail, label: Custom thumbnail, widget: image, required: false, media_folder: /public/uploads/sermons, public_folder: /uploads/sermons, hint: "Only if you want a different picture than YouTube's thumbnail." }
               - { name: scripture, label: Scripture, widget: string, required: false }
               - { name: summary, label: One-line summary, widget: text, required: false }
-              - { name: youtubeId, label: YouTube link, widget: string, required: false, hint: "Paste the full YouTube link to the sermon." }
+          - label: Past messages
+            label_singular: past message
+            name: past
+            widget: list
+            max: 4
+            collapsed: true
+            summary: "{{fields.title}} · {{fields.date}}"
+            hint: "Up to 4. Drag to reorder. When you post a new latest message, you can move the old one here."
+            fields:
+              - { name: title, label: Title, widget: string }
+              - name: speaker
+                label: Speaker
+                widget: select
+                default: pastor
+                options:
+                  - { label: "Pastor's Word", value: pastor }
+                  - { label: "Apostle's Word", value: apostle }
+              - { name: date, label: Date, widget: string, required: false, hint: "e.g. 12 Oct 2026" }
+              - { name: youtube, label: YouTube link, widget: string, required: false, hint: "On YouTube click Share, then Copy, and paste the link here. The video thumbnail is added automatically." }
+              - { name: thumbnail, label: Custom thumbnail, widget: image, required: false, media_folder: /public/uploads/sermons, public_folder: /uploads/sermons, hint: "Only if you want a different picture than YouTube's thumbnail." }
           - label: Speakers
             name: speakers
             widget: object
@@ -209,22 +242,12 @@ collections:
           - { name: weekTitle, label: Schedule heading, widget: string }
           - { name: weekAccent, label: Schedule heading (accent), widget: string }
           - { name: weekNote, label: Schedule note, widget: string }
-          - { name: messagePoster, label: Sermon video cover photo, widget: image }
           - { name: prayerTitle, label: Prayer heading, widget: string }
           - { name: prayerAccent, label: Prayer heading (accent), widget: string }
           - { name: prayerIntro, label: Prayer intro, widget: text }
           - { name: momentsTitle, label: Photos heading, widget: string }
           - { name: shepherdsTitle, label: Leaders heading, widget: string }
           - { name: shepherdsNote, label: Leaders note, widget: string }
-
-      - name: watch
-        label: Watch
-        file: src/content/pages/watch.json
-        fields:
-          - { name: title, label: Title, widget: string }
-          - { name: accent, label: Title (accent line), widget: string }
-          - { name: liveTitle, label: Live stream heading, widget: string }
-          - { name: liveNote, label: Live stream note, widget: string }
 
       - name: pray
         label: Pray
