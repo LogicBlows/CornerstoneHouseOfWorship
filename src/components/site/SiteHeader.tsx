@@ -38,7 +38,7 @@ const SiteHeader = ({ variant = "solid" }: SiteHeaderProps) => {
   return (
     <div className={cn(variant === "overlay" ? "absolute inset-x-0 top-0 z-30" : "relative bg-night")}>
       <header className="wrap flex items-center justify-between gap-5 py-4 lg:py-7">
-        <Link to="/" aria-label={`${site.name}, home`} className="rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-light">
+        <Link to="/" aria-label={`${site.name}, home`} className="rounded-md outline-none focus-visible:ring-2 focus-visible:ring-violet-light/70 focus-visible:ring-offset-4 focus-visible:ring-offset-transparent">
           <Wordmark size="md" className="hidden sm:flex" />
           <Wordmark size="sm" className="sm:hidden" />
         </Link>
