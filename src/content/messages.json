@@ -2,11 +2,13 @@
   "speakers": {
     "pastor": {
       "name": "Ps. Nirmal Kumar",
-      "series": "Pastor's Word"
+      "series": "Pastor's Word",
+      "channel": "https://www.youtube.com/@CornerstoneHouseOfWorship"
     },
     "apostle": {
       "name": "Apostle Vaibhav",
-      "series": "Apostle's Word"
+      "series": "Apostle's Word",
+      "channel": "https://www.youtube.com/@jesuscentral_church"
     }
   },
   "latest": {

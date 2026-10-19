@@ -112,12 +112,14 @@ collections:
                 fields:
                   - { name: name, label: Name, widget: string }
                   - { name: series, label: Series name, widget: string }
+                  - { name: channel, label: YouTube channel link, widget: string, required: false, hint: "Used for this speaker's \"More on YouTube\" links. Leave empty to use the church channel." }
               - label: "Apostle's Word"
                 name: apostle
                 widget: object
                 fields:
                   - { name: name, label: Name, widget: string }
                   - { name: series, label: Series name, widget: string }
+                  - { name: channel, label: YouTube channel link, widget: string, required: false, hint: "Used for this speaker's \"More on YouTube\" links. Leave empty to use the church channel." }
 
   # ── Church info ─────────────────────────────────────────────────────────
   - name: church
