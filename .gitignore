@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Private notes (never commit)
+Website Info and Secrets.txt
+*secret*.txt
