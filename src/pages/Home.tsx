@@ -12,21 +12,19 @@ import heroFallback from "@/assets/hero-sermon.jpg";
 
 const home = pages.home;
 
-// Main photo tint, chosen in the editor (Home > Home page).
-const tintColors: Record<string, string> = {
-  purple: "#5B1A8A",
-  blue: "#1F3A8A",
-  gold: "#A8761E",
-  rose: "#9B2C5A",
-  teal: "#11665F",
-};
+// Main photo tint, chosen in the editor (Home > Home page): on/off, any colour, and a strength.
+const BRAND_PURPLE = "#5B1A8A";
+const namedTints: Record<string, string> = { purple: BRAND_PURPLE, blue: "#1F3A8A", gold: "#A8761E", rose: "#9B2C5A", teal: "#11665F" };
 const tintStrengths: Record<string, number> = { light: 0.4, medium: 0.6, strong: 0.8 };
-const tintColor = (home as { heroTintColor?: string }).heroTintColor ?? "purple";
-const tintStrength = (home as { heroTintStrength?: string }).heroTintStrength ?? "medium";
+const tintSettings = home as { heroTint?: boolean; heroTintColor?: string; heroTintStrength?: string };
+const tintColor = (tintSettings.heroTintColor ?? "").trim();
 const heroTint =
-  tintColor === "none" || !tintColors[tintColor]
+  tintSettings.heroTint === false || tintColor === "none"
     ? null
-    : { color: tintColors[tintColor], opacity: tintStrengths[tintStrength] ?? tintStrengths.medium };
+    : {
+        color: namedTints[tintColor] ?? (tintColor || BRAND_PURPLE),
+        opacity: tintStrengths[tintSettings.heroTintStrength ?? "medium"] ?? tintStrengths.medium,
+      };
 const otherSunday = sundayGatherings.find((g) => g !== mainService);
 
 const Home = () => {

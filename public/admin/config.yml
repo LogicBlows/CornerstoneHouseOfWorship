@@ -30,20 +30,10 @@ collections:
           - { name: heroAccent, label: Title (accent line), widget: string }
           - { name: heroIntro, label: Intro, widget: text }
           - { name: heroPhoto, label: Main photo (top of the page), widget: image, media_folder: /public/uploads/home, public_folder: /uploads/home, hint: "A wide (landscape) photo works best. It is shown behind the welcome text." }
-          - name: heroTintColor
-            label: Main photo tint colour
-            widget: select
-            default: purple
-            hint: "A colour wash over the main photo. Purple matches the church colours; None shows the photo's natural colours."
-            options:
-              - { label: "Purple (default)", value: purple }
-              - { label: Deep blue, value: blue }
-              - { label: Warm gold, value: gold }
-              - { label: Rose, value: rose }
-              - { label: Teal, value: teal }
-              - { label: "None (natural colours)", value: none }
+          - { name: heroTint, label: Tint the main photo, widget: boolean, default: true, hint: "Adds a colour wash so the photo matches the church colours and the text stays easy to read. Turn off for natural colours." }
+          - { name: heroTintColor, label: Tint colour, widget: color, default: "#5B1A8A", allowInput: true, hint: "Pick any colour. The church purple is #5B1A8A." }
           - name: heroTintStrength
-            label: Main photo tint strength
+            label: Tint strength
             widget: select
             default: medium
             options:
