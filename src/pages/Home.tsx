@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import SiteLayout from "@/components/site/SiteLayout";
 import PrayerForm from "@/components/site/PrayerForm";
 import VideoPoster from "@/components/site/VideoPoster";
+import Portrait from "@/components/site/Portrait";
 import { churchChannel, gatherings, latestMessage, leaders, mainService, messages, pages, site, speakerChannel, speakers, sundayGatherings, weekDays, type Speaker } from "@/config/site";
 import { photos } from "@/lib/gallery";
 import heroDuotone from "@/assets/hero-duotone.jpg";
@@ -273,15 +274,7 @@ const Home = () => {
           <div className="grid grid-cols-2 gap-5 sm:gap-7 lg:grid-cols-4">
             {leaders.filter((l) => l.showOnHome).slice(0, 3).map((l) => (
               <div key={l.name}>
-                <div className="arch flex aspect-[3/4] items-center justify-center border border-dashed border-[#5a4766] bg-plum">
-                  {l.photo ? (
-                    <img src={l.photo} alt={l.name} className="h-full w-full object-cover" />
-                  ) : (
-                    <span className="font-serif text-5xl text-mist" aria-hidden="true">
-                      {l.name.replace(/^(Ps\.|Apostle)\s+/, "").charAt(0)}
-                    </span>
-                  )}
-                </div>
+                <Portrait name={l.name} photo={l.photo} tone="dark" />
                 <p className="mb-1 mt-5 font-serif text-2xl font-semibold sm:text-[28px]">{l.name}</p>
                 <p className="text-mist">{l.role}</p>
               </div>

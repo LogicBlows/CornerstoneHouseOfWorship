@@ -14,6 +14,7 @@ import watchPage from "@/content/pages/watch.json";
 import prayPage from "@/content/pages/pray.json";
 import momentsPage from "@/content/pages/moments.json";
 import ourHousePage from "@/content/pages/our-house.json";
+import ourTeamPage from "@/content/pages/our-team.json";
 import footerText from "@/content/pages/footer.json";
 
 export const site = {
@@ -124,6 +125,7 @@ export const pages = {
   pray: prayPage,
   moments: momentsPage,
   ourHouse: ourHousePage,
+  ourTeam: ourTeamPage,
   footer: footerText,
 };
 

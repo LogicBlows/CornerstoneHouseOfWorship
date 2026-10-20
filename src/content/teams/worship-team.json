@@ -1,0 +1,17 @@
+{
+  "name": "Worship Team",
+  "order": 1,
+  "description": "Singers and musicians who lead the church in worship every Sunday.",
+  "members": [
+    {
+      "name": "Roopali Singh",
+      "role": "Worship Leader",
+      "photo": ""
+    },
+    {
+      "name": "Ashish Spencer",
+      "role": "Worship Leader · Youth Shepherd",
+      "photo": ""
+    }
+  ]
+}
