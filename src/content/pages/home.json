@@ -17,5 +17,9 @@
   "weekAccent": "Cornerstone",
   "heroTitle": "Come as you are.",
   "verseRef": "Ephesians 2:20",
-  "verseAccent": "chief corner stone"
+  "verseAccent": "chief corner stone",
+  "heroPhoto": "/uploads/home/sunday-sermon.jpg",
+  "heroTintColor": "#5B1A8A",
+  "heroTintStrength": "medium",
+  "heroTint": true
 }

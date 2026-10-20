@@ -8,9 +8,23 @@ import VideoPoster from "@/components/site/VideoPoster";
 import Portrait from "@/components/site/Portrait";
 import { churchChannel, gatherings, latestMessage, leaders, mainService, messages, pages, site, speakerChannel, speakers, sundayGatherings, weekDays, type Speaker } from "@/config/site";
 import { photos } from "@/lib/gallery";
-import heroDuotone from "@/assets/hero-duotone.jpg";
+import heroFallback from "@/assets/hero-sermon.jpg";
 
 const home = pages.home;
+
+// Main photo tint, chosen in the editor (Home > Home page): on/off, any colour, and a strength.
+const BRAND_PURPLE = "#5B1A8A";
+const namedTints: Record<string, string> = { purple: BRAND_PURPLE, blue: "#1F3A8A", gold: "#A8761E", rose: "#9B2C5A", teal: "#11665F" };
+const tintStrengths: Record<string, number> = { light: 0.4, medium: 0.6, strong: 0.8 };
+const tintSettings = home as { heroTint?: boolean; heroTintColor?: string; heroTintStrength?: string };
+const tintColor = (tintSettings.heroTintColor ?? "").trim();
+const heroTint =
+  tintSettings.heroTint === false || tintColor === "none"
+    ? null
+    : {
+        color: namedTints[tintColor] ?? (tintColor || BRAND_PURPLE),
+        opacity: tintStrengths[tintSettings.heroTintStrength ?? "medium"] ?? tintStrengths.medium,
+      };
 const otherSunday = sundayGatherings.find((g) => g !== mainService);
 
 const Home = () => {
@@ -22,10 +36,14 @@ const Home = () => {
       {/* Hero */}
       <section className="relative flex min-h-[760px] flex-col overflow-hidden lg:min-h-[820px]">
         <img
-          src={heroDuotone}
-          alt="Sunday sermon at Cornerstone"
+          src={home.heroPhoto || heroFallback}
+          alt=""
           className="absolute inset-0 h-full w-full object-cover object-[35%_center]"
         />
+        {/* Colour wash over whatever photo is chosen in the editor (purple by default). */}
+        {heroTint && (
+          <div className="absolute inset-0 mix-blend-color" style={{ backgroundColor: heroTint.color, opacity: heroTint.opacity }} />
+        )}
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,10,28,.6)_0%,rgba(20,10,28,.15)_35%,rgba(20,10,28,.88)_78%,#140a1c_100%)]" />
         <div className="wrap relative mt-auto pb-10 pt-40 sm:pb-12">
           <p className="eyebrow mb-4 text-violet-pale sm:mb-5">{home.heroEyebrow}</p>
