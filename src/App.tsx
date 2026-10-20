@@ -9,6 +9,7 @@ import Watch from "./pages/Watch";
 import Pray from "./pages/Pray";
 import Moments from "./pages/Moments";
 import OurHouse from "./pages/OurHouse";
+import OurTeam from "./pages/OurTeam";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const redirects: Record<string, string> = {
   "/apostle": "/watch",
   "/gallery": "/moments",
   "/prayer": "/pray",
+  "/team": "/our-team",
 };
 
 const App = () => (
@@ -39,6 +41,7 @@ const App = () => (
           <Route path="/pray" element={<Pray />} />
           <Route path="/moments" element={<Moments />} />
           <Route path="/our-house" element={<OurHouse />} />
+          <Route path="/our-team" element={<OurTeam />} />
           {Object.entries(redirects).map(([from, to]) => (
             <Route key={from} path={from} element={<Navigate to={to} replace />} />
           ))}

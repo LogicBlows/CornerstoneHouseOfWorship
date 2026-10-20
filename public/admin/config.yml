@@ -14,31 +14,37 @@ media_folder: public/uploads
 public_folder: /uploads
 
 collections:
-  # ── Moments (photo albums) ──────────────────────────────────────────────
-  # Each album is its own entry, so editing one album can never change another.
-  - name: albums
-    label: Moments
-    label_singular: Album
-    description: "Photo albums on the Moments page. The website shows up to 5 albums (by the Order number) and up to 50 photos per album. Keep photos under about 1 MB each."
-    folder: src/content/albums
-    create: true
-    delete: true
-    extension: json
-    format: json
-    slug: "{{slug}}"
-    identifier_field: name
-    summary: "{{order}}. {{name}}"
-    sortable_fields: [order, name]
-    media_folder: /public/uploads/gallery
-    public_folder: /uploads/gallery
-    fields:
-      - { name: name, label: Album name, widget: string, hint: "e.g. Sundays, Youth Camp 2026, Christmas" }
-      - { name: order, label: Order on the page, widget: number, value_type: int, min: 1, max: 5, default: 1, hint: "1 = shown first. The first album's photos also appear on the home page." }
-      - name: photos
-        label: Photos
-        widget: image
-        media_library: { config: { multiple: true } }
-        hint: "Click to choose photos. In the window that opens, upload or tick several photos at once, then click Choose selected. Up to 50 photos."
+  # Sections are grouped by page. On each page the "accent" text is the part shown in italic purple.
+
+  # ── Home ────────────────────────────────────────────────────────────────
+  - name: home
+    label: Home
+    description: "Text and photos on the home page. The weekly schedule is under Church settings; leaders are under Our House."
+    files:
+      - name: home
+        label: Home page
+        file: src/content/pages/home.json
+        fields:
+          - { name: heroEyebrow, label: Small heading above the title, widget: string }
+          - { name: heroTitle, label: Title, widget: string }
+          - { name: heroAccent, label: Title (accent line), widget: string }
+          - { name: heroIntro, label: Intro, widget: text }
+          - { name: verseRef, label: Verse reference, widget: string }
+          - { name: verseText, label: Verse, widget: string }
+          - { name: verseAccent, label: Verse (accent ending), widget: string }
+          - { name: foundationText, label: Text under the verse, widget: text }
+          - { name: foundationPhotoLeft, label: Arch photo (left), widget: image }
+          - { name: foundationPhotoRight, label: Arch photo (right), widget: image }
+          - { name: weekTitle, label: Schedule heading, widget: string }
+          - { name: weekAccent, label: Schedule heading (accent), widget: string }
+          - { name: weekNote, label: Schedule note, widget: string }
+          - { name: prayerTitle, label: Prayer heading, widget: string }
+          - { name: prayerAccent, label: Prayer heading (accent), widget: string }
+          - { name: prayerIntro, label: Prayer intro, widget: text }
+          - { name: momentsTitle, label: Photos heading, widget: string }
+          - { name: shepherdsTitle, label: Leaders heading, widget: string }
+          - { name: shepherdsNote, label: Leaders note, widget: string }
+
 
   # ── Watch ───────────────────────────────────────────────────────────────
   # Everything on the Watch page: the live stream box, the latest message and up to 4 past messages.
@@ -121,12 +127,194 @@ collections:
                   - { name: series, label: Series name, widget: string }
                   - { name: channel, label: YouTube channel link, widget: string, required: false, hint: "Used for this speaker's \"More on YouTube\" links. Leave empty to use the church channel." }
 
-  # ── Church info ─────────────────────────────────────────────────────────
-  - name: church
-    label: Church info
+  # ── Pray ────────────────────────────────────────────────────────────────
+  - name: pray
+    label: Pray
+    description: "Prayer page text and the answered-prayer testimonies."
+    files:
+      - name: pray
+        label: Page text
+        file: src/content/pages/pray.json
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: accent, label: Title (accent), widget: string }
+          - { name: intro, label: Intro, widget: text }
+          - { name: topics, label: Prayer topics (home page form), widget: list }
+          - { name: whatsappTitle, label: WhatsApp box heading, widget: string }
+          - { name: whatsappNote, label: WhatsApp box note, widget: string }
+          - { name: testimoniesTitle, label: Testimonies heading, widget: string }
+
+      - name: testimonies
+        label: Testimonies
+        file: src/content/testimonies.json
+        fields:
+          - label: Testimonies
+            name: testimonies
+            widget: list
+            add_to_top: true
+            summary: "{{fields.name}} · {{fields.when}}"
+            fields:
+              - { name: quote, label: Testimony, widget: text }
+              - { name: name, label: First name, widget: string }
+              - { name: when, label: Month, widget: string }
+
+
+  # ── Moments ─────────────────────────────────────────────────────────────
+  # Each album is its own entry, so editing one album can never change another.
+  - name: albums
+    label: Moments (photo albums)
+    label_singular: Album
+    description: "Photo albums on the Moments page. The website shows up to 5 albums (by the Order number) and up to 50 photos per album. Keep photos under about 1 MB each."
+    folder: src/content/albums
+    create: true
+    delete: true
+    extension: json
+    format: json
+    slug: "{{slug}}"
+    identifier_field: name
+    summary: "{{order}}. {{name}}"
+    sortable_fields: [order, name]
+    media_folder: /public/uploads/gallery
+    public_folder: /uploads/gallery
+    fields:
+      - { name: name, label: Album name, widget: string, hint: "e.g. Sundays, Youth Camp 2026, Christmas" }
+      - { name: order, label: Order on the page, widget: number, value_type: int, min: 1, max: 5, default: 1, hint: "1 = shown first. The first album's photos also appear on the home page." }
+      - name: photos
+        label: Photos
+        widget: image
+        media_library: { config: { multiple: true } }
+        hint: "Click to choose photos. In the window that opens, upload or tick several photos at once, then click Choose selected. Up to 50 photos."
+
+  - name: moments-page
+    label: Moments page heading
+    files:
+      - name: moments
+        label: Moments page heading
+        file: src/content/pages/moments.json
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: accent, label: Title (accent line), widget: string }
+
+
+  # ── Our House ───────────────────────────────────────────────────────────
+  - name: our-house
+    label: Our House
+    description: "Everything on the Our House page."
+    files:
+      - name: our-house
+        label: Page text & photos
+        file: src/content/pages/our-house.json
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: accent, label: Title (accent), widget: string }
+          - { name: story, label: Our story, widget: text }
+          - { name: vision, label: Vision, widget: text }
+          - { name: photo, label: Arch photo, widget: image }
+          - { name: beliefsTitle, label: Beliefs heading, widget: string, hint: "e.g. Things we hold on to" }
+          - { name: leadersTitle, label: Leaders heading, widget: string }
+          - { name: teamLinkText, label: Team page link text, widget: string, default: Meet our team, hint: "The button under the leaders that opens the Our Team page." }
+          - { name: ministriesTitle, label: Ministries heading, widget: string }
+          - { name: ministriesIntro, label: Ministries intro, widget: string }
+          - { name: ctaTitle, label: Closing banner heading, widget: string }
+          - { name: ctaAccent, label: Closing banner heading (accent), widget: string }
+          - { name: ctaPhoto, label: Closing banner photo, widget: image }
+
+      - name: beliefs
+        label: Beliefs
+        file: src/content/beliefs.json
+        fields:
+          - label: Beliefs
+            name: beliefs
+            widget: list
+            required: false
+            hint: "Add as many as you like, drag to reorder, or remove them all to hide this section."
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: text, label: Statement, widget: text, required: false }
+
+      - name: ministries
+        label: Ministries
+        file: src/content/ministries.json
+        fields:
+          - label: Ministries
+            name: ministries
+            widget: list
+            required: false
+            hint: "The rows under Find your place. Add, edit, drag to reorder, or remove them all to hide this section."
+            summary: "{{fields.name}} · {{fields.when}}"
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: when, label: When it meets, widget: string }
+              - { name: blurb, label: Description, widget: text, required: false }
+
+      - name: leaders
+        label: Pastors & leaders
+        file: src/content/leaders.json
+        fields:
+          - label: Leaders
+            name: leaders
+            widget: list
+            summary: "{{fields.name}} · {{fields.role}}"
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: role, label: Role, widget: string }
+              - { name: photo, label: Portrait, widget: image, required: false, media_folder: /public/uploads/leaders, public_folder: /uploads/leaders, hint: "A portrait (taller than wide) looks best." }
+              - { name: showOnHome, label: Show on home page, widget: boolean, default: false, hint: "The home page shows up to three." }
+
+
+  # ── Our Team ────────────────────────────────────────────────────────────
+  # Each team is its own entry, so editing one team can never change another.
+  - name: teams
+    label: Our Team
+    label_singular: Team
+    description: "Teams on the Our Team page (opened from the Meet our team button on Our House). Pastors and leaders are edited under Our House."
+    folder: src/content/teams
+    create: true
+    delete: true
+    extension: json
+    format: json
+    slug: "{{slug}}"
+    identifier_field: name
+    summary: "{{order}}. {{name}}"
+    sortable_fields: [order, name]
+    media_folder: /public/uploads/team
+    public_folder: /uploads/team
+    fields:
+      - { name: name, label: Team name, widget: string, hint: "e.g. Worship Team, Media Team, Welcome Team" }
+      - { name: order, label: Order on the page, widget: number, value_type: int, min: 1, default: 1, hint: "1 = shown first." }
+      - { name: description, label: Short description, widget: text, required: false }
+      - label: Members
+        label_singular: member
+        name: members
+        widget: list
+        required: false
+        collapsed: true
+        summary: "{{fields.name}} · {{fields.role}}"
+        hint: "Add as many as you like. Drag to reorder."
+        fields:
+          - { name: name, label: Name, widget: string }
+          - { name: role, label: Role, widget: string, required: false, hint: "e.g. Keys, Vocals, Camera, Team lead" }
+          - { name: photo, label: Photo, widget: image, required: false, hint: "A portrait (taller than wide) looks best." }
+
+  - name: team-page
+    label: Our Team page heading
+    files:
+      - name: our-team
+        label: Our Team page heading
+        file: src/content/pages/our-team.json
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: accent, label: Title (accent), widget: string }
+          - { name: intro, label: Intro, widget: text, required: false }
+
+  # ── Church settings ─────────────────────────────────────────────────────
+  - name: settings
+    label: Church settings
+    description: "Used across the whole site: contact details, weekly schedule and footer."
     files:
       - name: details
-        label: Contact & address
+        label: Contact, address & social links
         file: src/content/church.json
         fields:
           - { name: name, label: Church name, widget: string }
@@ -171,126 +359,9 @@ collections:
               - { name: featured, label: Main Sunday service, widget: boolean, default: false, hint: "Highlighted, and its time is shown in the header button. Tick only one." }
               - { name: prayer, label: Show under "Pray with us", widget: boolean, default: false }
 
-      - name: leaders
-        label: Leaders
-        file: src/content/leaders.json
-        fields:
-          - label: Leaders
-            name: leaders
-            widget: list
-            summary: "{{fields.name}} · {{fields.role}}"
-            fields:
-              - { name: name, label: Name, widget: string }
-              - { name: role, label: Role, widget: string }
-              - { name: photo, label: Portrait, widget: image, required: false, media_folder: /public/uploads/leaders, public_folder: /uploads/leaders, hint: "A portrait (taller than wide) looks best." }
-              - { name: showOnHome, label: Show on home page, widget: boolean, default: false, hint: "The home page shows up to three." }
-
-      - name: ministries
-        label: Ministries
-        file: src/content/ministries.json
-        fields:
-          - label: Ministries
-            name: ministries
-            widget: list
-            summary: "{{fields.name}} · {{fields.when}}"
-            fields:
-              - { name: name, label: Name, widget: string }
-              - { name: when, label: When it meets, widget: string }
-              - { name: blurb, label: Description, widget: text }
-
-      - name: beliefs
-        label: Beliefs
-        file: src/content/beliefs.json
-        fields:
-          - label: Beliefs
-            name: beliefs
-            widget: list
-            summary: "{{fields.title}}"
-            fields:
-              - { name: title, label: Title, widget: string }
-              - { name: text, label: Statement, widget: text }
-
-      - name: testimonies
-        label: Testimonies
-        file: src/content/testimonies.json
-        fields:
-          - label: Testimonies
-            name: testimonies
-            widget: list
-            add_to_top: true
-            summary: "{{fields.name}} · {{fields.when}}"
-            fields:
-              - { name: quote, label: Testimony, widget: text }
-              - { name: name, label: First name, widget: string }
-              - { name: when, label: Month, widget: string }
-
-  # ── Page text ───────────────────────────────────────────────────────────
-  # On each page the "accent" text is the part shown in italic purple.
-  - name: pages
-    label: Page text
-    files:
-      - name: home
-        label: Home
-        file: src/content/pages/home.json
-        fields:
-          - { name: heroEyebrow, label: Small heading above the title, widget: string }
-          - { name: heroTitle, label: Title, widget: string }
-          - { name: heroAccent, label: Title (accent line), widget: string }
-          - { name: heroIntro, label: Intro, widget: text }
-          - { name: verseRef, label: Verse reference, widget: string }
-          - { name: verseText, label: Verse, widget: string }
-          - { name: verseAccent, label: Verse (accent ending), widget: string }
-          - { name: foundationText, label: Text under the verse, widget: text }
-          - { name: foundationPhotoLeft, label: Arch photo (left), widget: image }
-          - { name: foundationPhotoRight, label: Arch photo (right), widget: image }
-          - { name: weekTitle, label: Schedule heading, widget: string }
-          - { name: weekAccent, label: Schedule heading (accent), widget: string }
-          - { name: weekNote, label: Schedule note, widget: string }
-          - { name: prayerTitle, label: Prayer heading, widget: string }
-          - { name: prayerAccent, label: Prayer heading (accent), widget: string }
-          - { name: prayerIntro, label: Prayer intro, widget: text }
-          - { name: momentsTitle, label: Photos heading, widget: string }
-          - { name: shepherdsTitle, label: Leaders heading, widget: string }
-          - { name: shepherdsNote, label: Leaders note, widget: string }
-
-      - name: pray
-        label: Pray
-        file: src/content/pages/pray.json
-        fields:
-          - { name: title, label: Title, widget: string }
-          - { name: accent, label: Title (accent), widget: string }
-          - { name: intro, label: Intro, widget: text }
-          - { name: topics, label: Prayer topics (home page form), widget: list }
-          - { name: whatsappTitle, label: WhatsApp box heading, widget: string }
-          - { name: whatsappNote, label: WhatsApp box note, widget: string }
-          - { name: testimoniesTitle, label: Testimonies heading, widget: string }
-
-      - name: moments
-        label: Moments
-        file: src/content/pages/moments.json
-        fields:
-          - { name: title, label: Title, widget: string }
-          - { name: accent, label: Title (accent line), widget: string }
-
-      - name: our-house
-        label: Our House
-        file: src/content/pages/our-house.json
-        fields:
-          - { name: title, label: Title, widget: string }
-          - { name: accent, label: Title (accent), widget: string }
-          - { name: story, label: Our story, widget: text }
-          - { name: vision, label: Vision, widget: text }
-          - { name: photo, label: Arch photo, widget: image }
-          - { name: beliefsTitle, label: Beliefs heading, widget: string }
-          - { name: leadersTitle, label: Leaders heading, widget: string }
-          - { name: ministriesTitle, label: Ministries heading, widget: string }
-          - { name: ministriesIntro, label: Ministries intro, widget: string }
-          - { name: ctaTitle, label: Closing banner heading, widget: string }
-          - { name: ctaAccent, label: Closing banner heading (accent), widget: string }
-          - { name: ctaPhoto, label: Closing banner photo, widget: image }
-
       - name: footer
-        label: Footer
+        label: Footer text
         file: src/content/pages/footer.json
         fields:
           - { name: whatsappText, label: WhatsApp community text, widget: text }
+
