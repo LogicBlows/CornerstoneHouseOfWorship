@@ -1,0 +1,27 @@
+{
+  "order": 1,
+  "name": "Davids in our house.",
+  "description": "Bunch of talented musicians who use their craft for the Glory of God.",
+  "members": [
+    {
+      "name": "Deepanshu Singh",
+      "role": "Guitarist"
+    },
+    {
+      "name": "Joy Francis",
+      "role": "Drummer"
+    },
+    {
+      "name": "Jonathan Kumar",
+      "role": "Keyboardist"
+    },
+    {
+      "name": "Roopali Singh",
+      "role": "Acoustic Guitar"
+    },
+    {
+      "name": "Wilson Sonkamble",
+      "role": "Guitar"
+    }
+  ]
+}
