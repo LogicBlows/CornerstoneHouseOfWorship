@@ -19,5 +19,6 @@
   "verseRef": "Ephesians 2:20",
   "verseAccent": "chief corner stone",
   "heroPhoto": "/uploads/home/sunday-sermon.jpg",
-  "heroTint": true
+  "heroTintColor": "purple",
+  "heroTintStrength": "medium"
 }

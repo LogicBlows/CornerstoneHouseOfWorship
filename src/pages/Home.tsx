@@ -11,6 +11,22 @@ import { photos } from "@/lib/gallery";
 import heroFallback from "@/assets/hero-sermon.jpg";
 
 const home = pages.home;
+
+// Main photo tint, chosen in the editor (Home > Home page).
+const tintColors: Record<string, string> = {
+  purple: "#5B1A8A",
+  blue: "#1F3A8A",
+  gold: "#A8761E",
+  rose: "#9B2C5A",
+  teal: "#11665F",
+};
+const tintStrengths: Record<string, number> = { light: 0.4, medium: 0.6, strong: 0.8 };
+const tintColor = (home as { heroTintColor?: string }).heroTintColor ?? "purple";
+const tintStrength = (home as { heroTintStrength?: string }).heroTintStrength ?? "medium";
+const heroTint =
+  tintColor === "none" || !tintColors[tintColor]
+    ? null
+    : { color: tintColors[tintColor], opacity: tintStrengths[tintStrength] ?? tintStrengths.medium };
 const otherSunday = sundayGatherings.find((g) => g !== mainService);
 
 const Home = () => {
@@ -26,8 +42,10 @@ const Home = () => {
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-[35%_center]"
         />
-        {/* Brand purple wash over whatever photo is chosen in the editor. */}
-        {home.heroTint !== false && <div className="absolute inset-0 bg-[#5B1A8A] opacity-60 mix-blend-color" />}
+        {/* Colour wash over whatever photo is chosen in the editor (purple by default). */}
+        {heroTint && (
+          <div className="absolute inset-0 mix-blend-color" style={{ backgroundColor: heroTint.color, opacity: heroTint.opacity }} />
+        )}
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,10,28,.6)_0%,rgba(20,10,28,.15)_35%,rgba(20,10,28,.88)_78%,#140a1c_100%)]" />
         <div className="wrap relative mt-auto pb-10 pt-40 sm:pb-12">
           <p className="eyebrow mb-4 text-violet-pale sm:mb-5">{home.heroEyebrow}</p>
