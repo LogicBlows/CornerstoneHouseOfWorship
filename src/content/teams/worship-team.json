@@ -4,14 +4,26 @@
   "description": "Singers and musicians who lead the church in worship every Sunday.",
   "members": [
     {
+      "name": "Ashish Spencer",
+      "role": "Worship Leader · Youth Shepherd",
+      "photo": ""
+    },
+    {
       "name": "Roopali Singh",
       "role": "Worship Leader",
       "photo": ""
     },
     {
-      "name": "Ashish Spencer",
-      "role": "Worship Leader · Youth Shepherd",
-      "photo": ""
+      "name": "Deepanshu Singh",
+      "role": "Worship Team - Guitarist"
+    },
+    {
+      "name": "Joy Francis",
+      "role": "Worship Team - Drummer"
+    },
+    {
+      "name": "Sharon Singh",
+      "role": "Worship Team "
     }
   ]
 }
