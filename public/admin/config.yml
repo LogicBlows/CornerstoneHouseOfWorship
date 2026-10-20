@@ -29,6 +29,8 @@ collections:
           - { name: heroTitle, label: Title, widget: string }
           - { name: heroAccent, label: Title (accent line), widget: string }
           - { name: heroIntro, label: Intro, widget: text }
+          - { name: heroPhoto, label: Main photo (top of the page), widget: image, media_folder: /public/uploads/home, public_folder: /uploads/home, hint: "A wide (landscape) photo works best. It is shown behind the welcome text." }
+          - { name: heroTint, label: Purple tint on the main photo, widget: boolean, default: true, hint: "Keeps the photo in the church colours and the text easy to read." }
           - { name: verseRef, label: Verse reference, widget: string }
           - { name: verseText, label: Verse, widget: string }
           - { name: verseAccent, label: Verse (accent ending), widget: string }

@@ -8,7 +8,7 @@ import VideoPoster from "@/components/site/VideoPoster";
 import Portrait from "@/components/site/Portrait";
 import { churchChannel, gatherings, latestMessage, leaders, mainService, messages, pages, site, speakerChannel, speakers, sundayGatherings, weekDays, type Speaker } from "@/config/site";
 import { photos } from "@/lib/gallery";
-import heroDuotone from "@/assets/hero-duotone.jpg";
+import heroFallback from "@/assets/hero-sermon.jpg";
 
 const home = pages.home;
 const otherSunday = sundayGatherings.find((g) => g !== mainService);
@@ -22,10 +22,12 @@ const Home = () => {
       {/* Hero */}
       <section className="relative flex min-h-[760px] flex-col overflow-hidden lg:min-h-[820px]">
         <img
-          src={heroDuotone}
-          alt="Sunday sermon at Cornerstone"
+          src={home.heroPhoto || heroFallback}
+          alt=""
           className="absolute inset-0 h-full w-full object-cover object-[35%_center]"
         />
+        {/* Brand purple wash over whatever photo is chosen in the editor. */}
+        {home.heroTint !== false && <div className="absolute inset-0 bg-[#5B1A8A] opacity-60 mix-blend-color" />}
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,10,28,.6)_0%,rgba(20,10,28,.15)_35%,rgba(20,10,28,.88)_78%,#140a1c_100%)]" />
         <div className="wrap relative mt-auto pb-10 pt-40 sm:pb-12">
           <p className="eyebrow mb-4 text-violet-pale sm:mb-5">{home.heroEyebrow}</p>
