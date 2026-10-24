@@ -13,7 +13,7 @@
   "prayerAccent": "pray with you.",
   "heroIntro": "A family built on Jesus, the chief cornerstone, where faith, community and love come together every week.",
   "shepherdsTitle": "The people who serve you",
-  "heroTint": true,
+  "heroTint": false,
   "heroTintStrength": "medium",
   "shepherdsNote": "…and a team of worship leaders, youth shepherds and volunteers.",
   "heroPhoto": "/uploads/home/yahweh-home.jpeg",
