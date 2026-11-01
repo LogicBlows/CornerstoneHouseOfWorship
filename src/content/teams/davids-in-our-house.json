@@ -5,19 +5,23 @@
   "members": [
     {
       "name": "Deepanshu Singh",
-      "role": "Guitarist"
+      "role": "Guitarist",
+      "photo": "/uploads/team/img_1293.jpg"
     },
     {
       "name": "Joy Francis",
-      "role": "Drummer"
+      "role": "Drummer",
+      "photo": "/uploads/team/joy_team.jpg"
     },
     {
       "name": "Jonathan Kumar",
-      "role": "Keyboardist"
+      "role": "Keyboardist",
+      "photo": "/uploads/team/img_3214.jpg"
     },
     {
       "name": "Roopali Singh",
-      "role": "Acoustic Guitar"
+      "role": "Acoustic Guitar",
+      "photo": "/uploads/team/roopali-team.jpg"
     }
   ]
 }
