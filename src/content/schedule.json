@@ -43,14 +43,6 @@
     {
       "featured": false,
       "prayer": false,
-      "day": "Sun",
-      "name": "Daily Prayer",
-      "time": "9:30 PM",
-      "where": "Zoom"
-    },
-    {
-      "featured": false,
-      "prayer": false,
       "day": "Mon",
       "name": "Daily Prayer",
       "time": "9:30 PM",
